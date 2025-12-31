@@ -274,26 +274,39 @@
             <!-- Results Section (hidden initially) -->
             <div id="resultsSection" class="hidden">
                 
-                <!-- Recommendation Strip + Selling Time Control -->
-                <div class="bg-gradient-to-br from-primary/10 to-yellow-50 rounded-2xl p-5 sm:p-6 mb-6 border-2 border-primary/20">
-                    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
+                <!-- Enhanced recommendation strip with better visual hierarchy and split 2-3 months into separate buttons -->
+                <div class="advice-section bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 rounded-2xl p-6 sm:p-8 mb-6 border-2 border-primary shadow-lg">
+                    <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
                         <!-- Recommendation Text -->
                         <div class="flex-1">
-                            <h3 class="text-sm font-semibold text-primary mb-2" id="adviceTitle">Advice for: Sell now (today)</h3>
-                            <p class="text-base sm:text-lg text-neutral-900 leading-relaxed" id="adviceText">
-                                For <strong>Dry Maize – Yellow Maize</strong> in <strong>Kitui</strong>, the best price per bag <strong>today</strong> is in <strong>Kitui Town</strong> at about <strong class="text-primary">5,000 KES per bag (wholesale)</strong>.
-                            </p>
-                            <p class="text-xs text-neutral-600 mt-2">Prices are based on KAMIS market data and may differ slightly on the ground.</p>
+                            <div class="flex items-center gap-2 mb-3">
+                                <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <h3 class="text-base sm:text-lg font-bold text-primary" id="adviceTitle">Advice for: Sell now (today)</h3>
+                            </div>
+                            <div class="bg-white/80 backdrop-blur-sm rounded-xl p-4 sm:p-5 border border-primary/20">
+                                <p class="text-base sm:text-lg text-neutral-900 leading-relaxed font-medium" id="adviceText">
+                                    For <strong class="text-primary">Dry Maize – Yellow Maize</strong> in <strong>Kitui</strong>, the best price per bag <strong>today</strong> is in <strong>Kitui Town</strong> at about <strong class="text-primary text-xl">5,000 KES per bag (wholesale)</strong>.
+                                </p>
+                                <p class="text-xs sm:text-sm text-neutral-600 mt-3 flex items-start gap-2">
+                                    <svg class="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span>Prices are based on KAMIS market data and may differ slightly on the ground.</span>
+                                </p>
+                            </div>
                         </div>
                         
-                        <!-- Selling Time Segmented Control -->
+                        <!-- Split 2-3 months into separate 2 months and 3 months buttons -->
                         <div class="lg:min-w-fit">
-                            <label class="block text-sm font-semibold text-neutral-700 mb-2">Selling time:</label>
-                            <div class="inline-flex flex-wrap gap-2 bg-white p-1.5 rounded-lg border border-neutral-200 shadow-sm">
+                            <label class="block text-sm sm:text-base font-bold text-neutral-800 mb-3">Selling time:</label>
+                            <div class="inline-flex flex-wrap gap-2 bg-white/90 backdrop-blur-sm p-2 rounded-xl border-2 border-primary/20 shadow-md">
                                 <button type="button" class="selling-time-btn active" data-time="now">Now</button>
                                 <button type="button" class="selling-time-btn" data-time="2weeks">2 weeks</button>
                                 <button type="button" class="selling-time-btn" data-time="1month">1 month</button>
-                                <button type="button" class="selling-time-btn" data-time="2-3months">2–3 months</button>
+                                <button type="button" class="selling-time-btn" data-time="2months">2 months</button>
+                                <button type="button" class="selling-time-btn" data-time="3months">3 months</button>
                             </div>
                         </div>
                     </div>
@@ -319,27 +332,20 @@
                     
                     <!-- Desktop Table -->
                     <div class="hidden lg:block overflow-x-auto">
-                        <table class="w-full">
-                            <thead class="bg-gradient-to-r from-primary/5 to-primary/10">
+                        <table class="w-full min-w-[600px]">
+                            <thead class="bg-gradient-to-r from-primary/5 to-green-50">
                                 <tr>
-                                    <th class="px-4 py-3 text-left text-sm font-semibold text-neutral-900">
-                                        <input type="checkbox" id="selectAllDesktop" class="w-4 h-4 rounded border-neutral-300 text-primary focus:ring-primary mr-2">
-                                    </th>
-                                    <th class="px-4 py-3 text-left text-sm font-semibold text-neutral-900">Market</th>
-                                    <th class="px-4 py-3 text-left text-sm font-semibold text-neutral-900">Variety</th>
-                                    <th class="px-4 py-3 text-right text-sm font-semibold text-neutral-900">Wholesale (KES)</th>
-                                    <th class="px-4 py-3 text-right text-sm font-semibold text-neutral-900">Retail (KES)</th>
-                                    <th class="px-4 py-3 text-center text-sm font-semibold text-neutral-900">Trend</th>
-                                    <th class="px-4 py-3 text-center text-sm font-semibold text-neutral-900">Confidence</th>
+                                    <th class="px-4 py-3.5 text-left text-sm font-semibold text-neutral-900">Market</th>
+                                    <th class="px-4 py-3.5 text-left text-sm font-semibold text-neutral-900">Variety</th>
+                                    <th class="px-4 py-3.5 text-right text-sm font-semibold text-neutral-900">Wholesale (KES)</th>
+                                    <th class="px-4 py-3.5 text-right text-sm font-semibold text-neutral-900">Retail (KES)</th>
+                                    <th class="px-4 py-3.5 text-center text-sm font-semibold text-neutral-900">Trend</th>
+                                    <th class="px-4 py-3.5 text-center text-sm font-semibold text-neutral-900">Confidence</th>
                                 </tr>
                             </thead>
-                            <tbody id="priceTableBody" class="divide-y divide-neutral-200">
+                            <tbody class="divide-y divide-neutral-200 bg-white">
                                 <!-- Sample data rows -->
                                 <tr class="hover:bg-primary/5 transition-colors" data-variety="yellow">
-                                    <td class="px-4 py-4">
-                                        <input type="checkbox" class="market-checkbox w-4 h-4 rounded border-neutral-300 text-primary focus:ring-primary" 
-                                               data-market="Kitui Town" data-variety="Yellow Maize" data-price="5000" data-type="wholesale">
-                                    </td>
                                     <td class="px-4 py-4 text-neutral-900 font-medium">Kitui Town</td>
                                     <td class="px-4 py-4 text-neutral-700">Yellow Maize</td>
                                     <td class="px-4 py-4 text-right text-neutral-900 font-semibold">5,000</td>
@@ -356,10 +362,6 @@
                                 </tr>
                                 
                                 <tr class="hover:bg-primary/5 transition-colors" data-variety="white">
-                                    <td class="px-4 py-4">
-                                        <input type="checkbox" class="market-checkbox w-4 h-4 rounded border-neutral-300 text-primary focus:ring-primary"
-                                               data-market="Mwingi" data-variety="White Maize" data-price="4800" data-type="wholesale">
-                                    </td>
                                     <td class="px-4 py-4 text-neutral-900 font-medium">Mwingi</td>
                                     <td class="px-4 py-4 text-neutral-700">White Maize</td>
                                     <td class="px-4 py-4 text-right text-neutral-900 font-semibold">4,800</td>
@@ -376,10 +378,6 @@
                                 </tr>
                                 
                                 <tr class="hover:bg-primary/5 transition-colors" data-variety="yellow">
-                                    <td class="px-4 py-4">
-                                        <input type="checkbox" class="market-checkbox w-4 h-4 rounded border-neutral-300 text-primary focus:ring-primary"
-                                               data-market="Mutomo" data-variety="Yellow Maize" data-price="4600" data-type="wholesale">
-                                    </td>
                                     <td class="px-4 py-4 text-neutral-900 font-medium">Mutomo</td>
                                     <td class="px-4 py-4 text-neutral-700">Yellow Maize</td>
                                     <td class="px-4 py-4 text-right text-neutral-900 font-semibold">4,600</td>
@@ -396,10 +394,6 @@
                                 </tr>
                                 
                                 <tr class="hover:bg-primary/5 transition-colors" data-variety="mixed">
-                                    <td class="px-4 py-4">
-                                        <input type="checkbox" class="market-checkbox w-4 h-4 rounded border-neutral-300 text-primary focus:ring-primary"
-                                               data-market="Ikutha" data-variety="Mixed Maize" data-price="4700" data-type="wholesale">
-                                    </td>
                                     <td class="px-4 py-4 text-neutral-900 font-medium">Ikutha</td>
                                     <td class="px-4 py-4 text-neutral-700">Mixed Maize</td>
                                     <td class="px-4 py-4 text-right text-neutral-900 font-semibold">4,700</td>
@@ -416,10 +410,6 @@
                                 </tr>
                                 
                                 <tr class="hover:bg-primary/5 transition-colors" data-variety="white">
-                                    <td class="px-4 py-4">
-                                        <input type="checkbox" class="market-checkbox w-4 h-4 rounded border-neutral-300 text-primary focus:ring-primary"
-                                               data-market="Kyuso" data-variety="White Maize" data-price="4500" data-type="wholesale">
-                                    </td>
                                     <td class="px-4 py-4 text-neutral-900 font-medium">Kyuso</td>
                                     <td class="px-4 py-4 text-neutral-700">White Maize</td>
                                     <td class="px-4 py-4 text-right text-neutral-900 font-semibold">4,500</td>
@@ -436,158 +426,178 @@
                                 </tr>
                             </tbody>
                         </table>
+                        
+                        <!-- Load More Button for Desktop Table -->
+                        <!-- < CHANGE> Add hidden md:block to show only on desktop -->
+                        <div id="loadMoreTableDesktop" class="mt-4 text-center hidden md:block">
+                            <button id="loadMoreTableBtnDesktop" class="px-6 py-2.5 bg-white border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary hover:text-white transition-colors">
+                                Load More Markets
+                            </button>
+                        </div>
                     </div>
                     
                     <!-- Mobile Cards -->
-                    <div class="lg:hidden space-y-3" id="priceCardsList">
-                        <div class="border-2 border-neutral-200 rounded-xl p-4 hover:border-primary transition-all" data-variety="yellow">
-                            <div class="flex items-start gap-3 mb-3">
-                                <input type="checkbox" class="market-checkbox w-5 h-5 rounded border-neutral-300 text-primary focus:ring-primary mt-1"
-                                       data-market="Kitui Town" data-variety="Yellow Maize" data-price="5000" data-type="wholesale">
-                                <div class="flex-1">
-                                    <div class="flex justify-between items-start mb-2">
-                                        <div>
-                                            <div class="font-semibold text-base text-neutral-900">Kitui Town</div>
-                                            <div class="text-sm text-neutral-600">Yellow Maize</div>
-                                        </div>
-                                        <div class="text-right">
-                                            <div class="text-lg font-bold text-primary">KES 5,000</div>
-                                            <div class="text-xs text-neutral-600">Retail: 5,400</div>
-                                        </div>
-                                    </div>
-                                    <div class="flex gap-2 flex-wrap">
-                                        <span class="inline-flex items-center gap-1 px-2.5 py-1 bg-green-100 text-green-800 text-xs font-semibold rounded-full">
-                                            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M7 14l5-5 5 5H7z"/></svg>
-                                            Rising
-                                        </span>
-                                        <span class="px-2.5 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">High</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="border-2 border-neutral-200 rounded-xl p-4 hover:border-primary transition-all" data-variety="white">
-                            <div class="flex items-start gap-3 mb-3">
-                                <input type="checkbox" class="market-checkbox w-5 h-5 rounded border-neutral-300 text-primary focus:ring-primary mt-1"
-                                       data-market="Mwingi" data-variety="White Maize" data-price="4800" data-type="wholesale">
-                                <div class="flex-1">
-                                    <div class="flex justify-between items-start mb-2">
-                                        <div>
-                                            <div class="font-semibold text-base text-neutral-900">Mwingi</div>
-                                            <div class="text-sm text-neutral-600">White Maize</div>
-                                        </div>
-                                        <div class="text-right">
-                                            <div class="text-lg font-bold text-primary">KES 4,800</div>
-                                            <div class="text-xs text-neutral-600">Retail: 5,200</div>
-                                        </div>
-                                    </div>
-                                    <div class="flex gap-2 flex-wrap">
-                                        <span class="inline-flex items-center gap-1 px-2.5 py-1 bg-neutral-100 text-neutral-800 text-xs font-semibold rounded-full">
-                                            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M7 10h10v4H7v-4z"/></svg>
-                                            Stable
-                                        </span>
-                                        <span class="px-2.5 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">High</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="border-2 border-neutral-200 rounded-xl p-4 hover:border-primary transition-all" data-variety="yellow">
-                            <div class="flex items-start gap-3 mb-3">
-                                <input type="checkbox" class="market-checkbox w-5 h-5 rounded border-neutral-300 text-primary focus:ring-primary mt-1"
-                                       data-market="Mutomo" data-variety="Yellow Maize" data-price="4600" data-type="wholesale">
-                                <div class="flex-1">
-                                    <div class="flex justify-between items-start mb-2">
-                                        <div>
-                                            <div class="font-semibold text-base text-neutral-900">Mutomo</div>
-                                            <div class="text-sm text-neutral-600">Yellow Maize</div>
-                                        </div>
-                                        <div class="text-right">
-                                            <div class="text-lg font-bold text-primary">KES 4,600</div>
-                                            <div class="text-xs text-neutral-600">Retail: 5,000</div>
-                                        </div>
-                                    </div>
-                                    <div class="flex gap-2 flex-wrap">
-                                        <span class="inline-flex items-center gap-1 px-2.5 py-1 bg-red-100 text-red-800 text-xs font-semibold rounded-full">
-                                            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5H7z"/></svg>
-                                            Falling
-                                        </span>
-                                        <span class="px-2.5 py-1 bg-amber-100 text-amber-800 text-xs font-semibold rounded-full">Medium</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="lg:hidden space-y-4" id="priceCardsList">
+                        <!-- Mobile cards will be rendered here by JavaScript -->
                     </div>
                     
+                    <!-- Load More Button for Mobile Cards -->
+                    <!-- < CHANGE> Add md:hidden to show only on mobile -->
+                    <div id="loadMoreTableMobile" class="mt-4 text-center hidden md:hidden">
+                        <button id="loadMoreTableBtnMobile" class="px-6 py-2.5 bg-white border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary hover:text-white transition-colors">
+                            Load More Markets
+                        </button>
+                    </div>
+
                     <p class="text-xs text-neutral-600 mt-5 pl-1">Prices are per one standard bag. Transport and other costs are not yet included.</p>
                 </div>
 
-                <!-- Step 2: Transport & Net Section -->
-                <div id="transportSection" class="bg-gradient-to-br from-yellow-50 to-amber-50 rounded-2xl p-5 sm:p-6 mb-8 border-2 border-yellow-400/30">
-                    <div class="flex items-start gap-3 mb-5">
-                        <div class="w-10 h-10 rounded-full bg-yellow-400 flex items-center justify-center flex-shrink-0">
-                            <span class="text-white font-bold text-lg">2</span>
+                <!-- Transport Section Trigger -->
+                <div class="bg-gradient-to-br from-yellow-50 via-amber-50 to-orange-50 rounded-2xl p-6 sm:p-8 border-2 border-yellow-200 shadow-md mt-8">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
+                        <div class="flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br from-yellow-400 to-amber-500 flex items-center justify-center shadow-lg">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                            </svg>
                         </div>
-                        <div>
-                            <h3 class="text-lg sm:text-xl font-bold text-neutral-900 mb-1">Include transport and see net per bag (optional)</h3>
-                            <p class="text-sm text-neutral-700">Select markets above, then enter your number of bags and transport costs to see how much you keep per bag.</p>
+                        <div class="flex-1">
+                            <h3 class="text-lg sm:text-xl font-bold text-neutral-900 mb-2">Want to see how transport affects your returns?</h3>
+                            <p class="text-sm sm:text-base text-neutral-700 leading-relaxed">Calculate your actual net profit per bag after deducting transport costs. Compare different markets to find the best option for you.</p>
                         </div>
-                    </div>
-                    
-                    <!-- Selected Markets List -->
-                    <div id="selectedMarketsList" class="mb-5">
-                        <p class="text-sm text-neutral-600 italic">Select at least one market from the table above to compare after transport.</p>
-                    </div>
-                    
-                    <!-- Quantity and Transport Inputs (shown when markets selected) -->
-                    <div id="transportInputs" class="hidden space-y-5">
-                        <!-- Number of bags -->
-                        <div>
-                            <label class="block text-sm font-semibold text-neutral-700 mb-2">Number of bags you plan to sell</label>
-                            <input type="number" id="numberOfBags" min="1" value="10" 
-                                   class="w-full sm:w-48 px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all min-h-[48px]">
-                        </div>
-                        
-                        <!-- Transport costs per market -->
-                        <div id="transportCostsContainer" class="space-y-4">
-                            <!-- Dynamically filled by JavaScript -->
-                        </div>
-                        
-                        <button type="button" id="calculateBtn" class="w-full sm:w-auto bg-yellow-400 text-neutral-900 font-semibold px-8 py-3 rounded-lg hover:bg-yellow-500 transition-all shadow-sm hover:shadow-md min-h-[56px]">
-                            Calculate net per bag
+                        <button type="button" id="openTransportCardBtn" class="flex-shrink-0 bg-gradient-to-r from-yellow-400 to-amber-500 text-white font-bold px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl hover:from-yellow-500 hover:to-amber-600 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 whitespace-nowrap text-sm sm:text-base">
+                            Add transport & compare →
                         </button>
                     </div>
                 </div>
 
-                <!-- Net Results Table (hidden initially) -->
-                <div id="netResultsSection" class="hidden bg-white rounded-2xl shadow-sm p-5 sm:p-6 mb-8 border border-neutral-200">
-                    <h3 class="text-xl sm:text-2xl font-bold mb-5 text-neutral-900">Net Profit Comparison</h3>
-                    
-                    <!-- Desktop Table -->
-                    <div class="hidden lg:block overflow-x-auto">
-                        <table class="w-full">
-                            <thead class="bg-gradient-to-r from-yellow-50 to-yellow-100">
-                                <tr>
-                                    <th class="px-4 py-3 text-left text-sm font-semibold text-neutral-900">Market & Variety</th>
-                                    <th class="px-4 py-3 text-right text-sm font-semibold text-neutral-900">Price per bag</th>
-                                    <th class="px-4 py-3 text-right text-sm font-semibold text-neutral-900">Transport per bag</th>
-                                    <th class="px-4 py-3 text-right text-sm font-semibold text-neutral-900">Net per bag</th>
-                                    <th class="px-4 py-3 text-right text-sm font-semibold text-neutral-900">Total net</th>
-                                    <th class="px-4 py-3 text-center text-sm font-semibold text-neutral-900">Note</th>
-                                </tr>
-                            </thead>
-                            <tbody id="netResultsTableBody" class="divide-y divide-neutral-200">
-                                <!-- Filled by JavaScript -->
-                            </tbody>
-                        </table>
+                <!-- Transport Card (Expandable) -->
+                <div id="transportCard" class="hidden bg-white rounded-2xl shadow-xl border-2 border-neutral-200 mt-8 overflow-hidden">
+                    <!-- Card Header -->
+                    <div class="bg-gradient-to-r from-yellow-400 to-amber-500 px-6 py-5 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-white/20 backdrop-blur flex items-center justify-center">
+                                <span class="text-white font-bold text-lg">2</span>
+                            </div>
+                            <h3 class="text-xl sm:text-2xl font-bold text-white">Include your transport (optional)</h3>
+                        </div>
+                        <button type="button" id="closeTransportCardBtn" class="text-white hover:bg-white/20 rounded-lg p-2 transition-colors">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
                     </div>
                     
-                    <!-- Mobile Cards -->
-                    <div class="lg:hidden space-y-3" id="netResultsCardsList">
-                        <!-- Filled by JavaScript -->
+                    <!-- Card Body -->
+                    <div class="p-6 sm:p-8">
+                        <p class="text-neutral-700 mb-6 text-sm sm:text-base leading-relaxed">
+                            <strong>Compare up to 2 markets at a time.</strong> Choose markets and varieties from the list below, then enter your number of bags and transport costs.
+                        </p>
+                        
+                        <!-- Market Selection List -->
+                        <div class="bg-gradient-to-br from-neutral-50 to-neutral-100 rounded-xl p-5 sm:p-6 border border-neutral-200 mb-6">
+                            <!-- < CHANGE> Removing search and sort functionality, adding Load More button for transport -->
+                            <div class="mb-4">
+                                <h3 class="text-base font-bold text-neutral-900 mb-1 flex items-center gap-2">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Select markets and varieties to compare:
+                                </h3>
+                                <p class="text-sm text-neutral-600 mb-3">
+                                    Compare up to 2 markets at a time. <span id="selectionCount" class="font-semibold text-primary">(0 selected)</span>
+                                </p>
+                                <!-- Making Clear Selection button red for visibility -->
+                                <button type="button" id="deselectAllBtn" class="hidden text-red-600 text-sm font-semibold hover:text-red-700 transition-colors">Clear Selection</button>
+                            </div>
+
+                            <!-- Market List Grid -->
+                            <div id="marketSelectionList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mb-4">
+                                <!-- Markets will be rendered here by JavaScript -->
+                            </div>
+                            
+                            <!-- Load More Button for Transport Markets -->
+                            <div id="loadMoreTransportContainer" class="text-center mb-4 hidden">
+                                <button id="loadMoreTransportBtn" class="px-6 py-2.5 bg-white border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary hover:text-white transition-colors">
+                                    Load More Markets
+                                </button>
+                            </div>
+
+                            <div id="noMarketsMessage" class="text-center py-8 text-neutral-500 hidden">
+                                No markets available
+                            </div>
+                        </div>
+                        
+                        <!-- Transport Inputs (shown after selection) -->
+                        <div id="transportInputsSection" class="hidden space-y-6">
+                            <!-- Number of bags -->
+                            <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-5 border border-blue-200">
+                                <label class="block text-sm font-bold text-neutral-800 mb-3 flex items-center gap-2">
+                                    <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                                    </svg>
+                                    Number of bags you plan to sell:
+                                </label>
+                                <input type="number" id="numberOfBags" min="1" value="10" 
+                                       class="w-full sm:max-w-xs px-5 py-3.5 border-2 border-blue-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all text-lg font-semibold bg-white">
+                            </div>
+                            
+                            <!-- Per-Market Transport Inputs -->
+                            <div>
+                                <h4 class="text-base font-bold text-neutral-800 mb-4 flex items-center gap-2">
+                                    <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                    Transport costs per market:
+                                </h4>
+                                <div id="perMarketTransportInputs" class="space-y-4">
+                                    <!-- Dynamically filled by JavaScript -->
+                                </div>
+                            </div>
+                            
+                            <!-- Calculate Button -->
+                            <div class="flex flex-col sm:flex-row gap-3 pt-4">
+                                <button type="button" id="calculateNetBtn" class="flex-1 bg-gradient-to-r from-yellow-400 to-amber-500 text-white font-bold px-8 py-4 rounded-xl hover:from-yellow-500 hover:to-amber-600 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-lg">
+                                    Calculate net per bag →
+                                </button>
+                            </div>
+                        </div>
                     </div>
                     
-                    <p class="text-xs text-neutral-600 mt-5 pl-1">Net per bag = price per bag − your transport per bag. Total net = net per bag × number of bags. Other costs (seeds, labour, market fees) are not included.</p>
+                    <!-- Net Results Section -->
+                    <div id="netResultsSection" class="hidden border-t border-neutral-200 bg-white p-6 sm:p-8 rounded-b-xl">
+                        <h4 class="text-xl font-bold mb-4 text-neutral-900 flex items-center gap-2">
+                            <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
+                            </svg>
+                            Net Profit Comparison
+                        </h4>
+                        
+                        <!-- Desktop Table -->
+                        <div class="hidden lg:block overflow-x-auto rounded-lg border border-neutral-200 shadow-sm">
+                            <table class="w-full">
+                                <thead class="bg-neutral-50 border-b border-neutral-200">
+                                    <tr>
+                                        <th class="px-4 py-3 text-left text-sm font-semibold text-neutral-700">Market & Variety</th>
+                                        <th class="px-4 py-3 text-right text-sm font-semibold text-neutral-700">Price per bag</th>
+                                        <th class="px-4 py-3 text-right text-sm font-semibold text-neutral-700">Transport per bag</th>
+                                        <th class="px-4 py-3 text-right text-sm font-semibold text-neutral-700">Net per bag</th>
+                                        <th class="px-4 py-3 text-right text-sm font-semibold text-neutral-700">Total net</th>
+                                        <th class="px-4 py-3 text-center text-sm font-semibold text-neutral-700">Note</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="netResultsTableBody" class="divide-y divide-neutral-100">
+                                    <!-- Filled by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <!-- Mobile Cards -->
+                        <div class="lg:hidden space-y-3" id="netResultsCardsList">
+                            <!-- Filled by JavaScript -->
+                        </div>
+                        
+                        <p class="text-xs text-neutral-600 mt-4 pl-1">Net per bag = price per bag − your transport per bag. Total net = net per bag × number of bags. Other costs (seeds, labour, market fees) are not included.</p>
+                    </div>
                 </div>
 
             </div>
@@ -690,7 +700,6 @@
             const trigger = document.querySelector(`#${type}Dropdown .custom-dropdown-trigger`);
             const isOpen = !menu.classList.contains('hidden');
             
-            // Close all dropdowns first
             closeAllDropdowns();
             
             if (!isOpen) {
@@ -701,7 +710,6 @@
                     addDropdownBackdrop(type);
                 }
                 
-                // Focus on search input
                 const searchInput = document.getElementById(`${type}Search`);
                 if (searchInput) {
                     setTimeout(() => searchInput.focus(), 100);
@@ -710,7 +718,6 @@
         }
 
         function addDropdownBackdrop(type) {
-            // Remove existing backdrop if any
             removeDropdownBackdrop();
             
             const backdrop = document.createElement('div');
@@ -719,7 +726,6 @@
             backdrop.onclick = () => closeAllDropdowns();
             document.body.appendChild(backdrop);
             
-            // Prevent body scroll when dropdown is open
             document.body.style.overflow = 'hidden';
         }
 
@@ -728,7 +734,6 @@
             if (backdrop) {
                 backdrop.remove();
             }
-            // Restore body scroll
             document.body.style.overflow = '';
         }
 
@@ -752,13 +757,11 @@
                 }
             });
             
-            // Only close on desktop when clicking outside (mobile uses backdrop)
             if (!clickedInsideDropdown && window.innerWidth > 640) {
                 closeAllDropdowns();
             }
         });
 
-        // Function to filter dropdown items (assuming this is used by the search input)
         function filterDropdown(type) {
             const searchInput = document.getElementById(`${type}Search`);
             const filter = searchInput.value.toLowerCase();
@@ -776,19 +779,507 @@
                 }
             });
 
-            // Show/hide "no results" message
             const noResults = document.getElementById(`${type}NoResults`);
             if (noResults) {
                 noResults.style.display = visibleItems === 0 ? '' : 'none';
             }
         }
 
-        // Function to select a dropdown item
         function selectDropdownItem(type, value, dataValue) {
             document.getElementById(`${type}Value`).textContent = value;
             document.getElementById(`${type}Select`).value = dataValue;
             closeAllDropdowns();
         }
+    </script>
+    <script>
+        let priceTableRowsPerLoad = 5;
+        let priceTableCurrentlyShown = 0;
+        let allPriceTableRows = []; 
+        let transportMarketsPerLoad = 6; // Define this variable for transport section
+        let transportCurrentlyShown = 0; // Initialize transport counter
+
+        // Moved marketData definition here to be accessible by renderMarketList and loadMoreMarkets
+        let marketData = [
+            { market: 'Kitui Town', variety: 'Yellow Maize', wholesale: 5000, retail: 5400, trend: 'rising', confidence: 'high' },
+            { market: 'Mwingi', variety: 'White Maize', wholesale: 4800, retail: 5200, trend: 'stable', confidence: 'high' },
+            { market: 'Mutomo', variety: 'Yellow Maize', wholesale: 4600, retail: 5000, trend: 'falling', confidence: 'medium' },
+            { market: 'Ikutha', variety: 'Mixed Maize', wholesale: 4700, retail: 5100, trend: 'stable', confidence: 'medium' },
+            { market: 'Kyuso', variety: 'White Maize', wholesale: 4500, retail: 4900, trend: 'rising', confidence: 'low' },
+            { market: 'Kisasi', variety: 'Yellow Maize', wholesale: 4750, retail: 5150, trend: 'stable', confidence: 'medium' },
+            { market: 'Nzambani', variety: 'White Maize', wholesale: 4650, retail: 5050, trend: 'falling', confidence: 'medium' },
+            { market: 'Mutito', variety: 'Mixed Maize', wholesale: 4400, retail: 4800, trend: 'rising', confidence: 'low' },
+            { market: 'Matinyani', variety: 'Yellow Maize', wholesale: 4900, retail: 5300, trend: 'rising', confidence: 'high' },
+            { market: 'Kaliku', variety: 'White Maize', wholesale: 4700, retail: 5100, trend: 'stable', confidence: 'medium' },
+            { market: 'Syokimau', variety: 'Yellow Maize', wholesale: 4850, retail: 5250, trend: 'rising', confidence: 'medium' },
+            { market: 'Kithimani', variety: 'Mixed Maize', wholesale: 4550, retail: 4950, trend: 'falling', confidence: 'medium' }
+        ];
+        
+        // Initialize showing first 5 rows
+        priceTableCurrentlyShown = priceTableRowsPerLoad;
+
+        // Initialize price table rows on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            generatePriceTableRows(); // Generate rows from marketData first
+            showPriceTableRows();
+            
+            // Initialize transport markets with first 4
+            transportCurrentlyShown = Math.min(transportMarketsPerLoad, marketData.length); 
+            renderMarketList(marketData.slice(0, transportCurrentlyShown));
+        });
+
+        function generatePriceTableRows() {
+            const desktopTableBody = document.querySelector('#resultsSection .hidden.lg\\:block table tbody');
+            const mobileCardsContainer = document.getElementById('priceCardsList');
+            
+            if (!desktopTableBody || !mobileCardsContainer) return;
+            
+            // Clear existing rows
+            desktopTableBody.innerHTML = '';
+            mobileCardsContainer.innerHTML = '';
+            allPriceTableRows = [];
+            
+            // Generate rows from marketData
+            marketData.forEach((market) => {
+                // Desktop row
+                const row = document.createElement('tr');
+                row.className = 'border-b border-neutral-200 hover:bg-neutral-50 transition-colors';
+                row.innerHTML = `
+                    <td class="py-4 px-4 font-medium text-neutral-900">${market.market}</td>
+                    <td class="py-4 px-4 text-neutral-700">${market.variety}</td>
+                    <td class="py-4 px-4 text-neutral-900 font-semibold">${market.wholesale.toLocaleString()}</td>
+                    <td class="py-4 px-4 text-neutral-700">${market.retail.toLocaleString()}</td>
+                    <td class="py-4 px-4">
+                        <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium ${
+                            market.trend === 'rising' ? 'bg-green-100 text-green-700' :
+                            market.trend === 'falling' ? 'bg-red-100 text-red-700' :
+                            'bg-neutral-100 text-neutral-700'
+                        }">
+                            ${market.trend === 'rising' ? '↑' : market.trend === 'falling' ? '↓' : '-'} ${market.trend.charAt(0).toUpperCase() + market.trend.slice(1)}
+                        </span>
+                    </td>
+                    <td class="py-4 px-4">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
+                            market.confidence === 'high' ? 'bg-blue-100 text-blue-700' :
+                            market.confidence === 'medium' ? 'bg-amber-100 text-amber-700' :
+                            'bg-neutral-100 text-neutral-600'
+                        }">
+                            ${market.confidence.charAt(0).toUpperCase() + market.confidence.slice(1)}
+                        </span>
+                    </td>
+                `;
+                desktopTableBody.appendChild(row);
+                allPriceTableRows.push(row);
+                
+                // Mobile card
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-lg border border-neutral-200 p-4 hover:border-primary/30 hover:shadow-sm transition-all';
+                card.innerHTML = `
+                    <div class="flex justify-between items-start mb-3">
+                        <div>
+                            <h4 class="font-semibold text-neutral-900">${market.market}</h4>
+                            <!-- Made variety stand out with badge styling -->
+                            <span class="inline-block mt-1 px-2.5 py-0.5 bg-primary/10 text-primary text-xs font-medium rounded-full border border-primary/20">
+                                ${market.variety}
+                            </span>
+                        </div>
+                        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${
+                            market.confidence === 'high' ? 'bg-blue-100 text-blue-700' :
+                            market.confidence === 'medium' ? 'bg-amber-100 text-amber-700' :
+                            'bg-neutral-100 text-neutral-600'
+                        }">
+                            ${market.confidence.charAt(0).toUpperCase() + market.confidence.slice(1)}
+                        </span>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-neutral-600">Wholesale:</span>
+                            <span class="font-semibold text-neutral-900">${market.wholesale.toLocaleString()} KES</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-neutral-600">Retail:</span>
+                            <span class="text-neutral-700">${market.retail.toLocaleString()} KES</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-neutral-600">Trend:</span>
+                            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                                market.trend === 'rising' ? 'bg-green-100 text-green-700' :
+                                market.trend === 'falling' ? 'bg-red-100 text-red-700' :
+                                'bg-neutral-100 text-neutral-700'
+                            }">
+                                ${market.trend === 'rising' ? '↑' : market.trend === 'falling' ? '↓' : '-'} ${market.trend.charAt(0).toUpperCase() + market.trend.slice(1)}
+                            </span>
+                        </div>
+                    </div>
+                `;
+                mobileCardsContainer.appendChild(card);
+            });
+        }
+
+        function showPriceTableRows() {
+            const mobileCardsContainer = document.getElementById('priceCardsList');
+            const loadMoreDesktop = document.getElementById('loadMoreTableDesktop');
+            const loadMoreMobile = document.getElementById('loadMoreTableMobile');
+            
+            if (allPriceTableRows.length === 0) return;
+            
+            // Show rows up to currentlyShown
+            const rowsToShow = allPriceTableRows.slice(0, priceTableCurrentlyShown);
+            rowsToShow.forEach((row, index) => {
+                row.style.display = '';
+                
+                if (mobileCardsContainer && mobileCardsContainer.children[index]) {
+                    mobileCardsContainer.children[index].style.display = '';
+                }
+            });
+            
+            // Hide rows beyond currentlyShown
+            for (let i = priceTableCurrentlyShown; i < allPriceTableRows.length; i++) {
+                allPriceTableRows[i].style.display = 'none';
+                if (mobileCardsContainer && mobileCardsContainer.children[i]) {
+                    mobileCardsContainer.children[i].style.display = 'none';
+                }
+            }
+            
+            // Show/hide Load More buttons
+            if (priceTableCurrentlyShown < allPriceTableRows.length) {
+                loadMoreDesktop.classList.remove('hidden');
+                loadMoreMobile.classList.remove('hidden');
+            } else {
+                loadMoreDesktop.classList.add('hidden');
+                loadMoreMobile.classList.add('hidden');
+            }
+        }
+
+        // Helper function to re-render market list based on current data and display count
+        function renderMarketList(dataToRender = marketData) {
+            const listContainer = document.getElementById('marketSelectionList');
+            const noMarketsMessage = document.getElementById('noMarketsMessage');
+            const loadMoreContainer = document.getElementById('loadMoreTransportContainer');
+            const selectedCheckboxes = document.querySelectorAll('.transport-market-checkbox:checked');
+            const currentSelections = new Set(Array.from(selectedCheckboxes).map(cb => cb.getAttribute('data-market') + '|' + cb.getAttribute('data-variety'))); // Use a unique separator
+
+            listContainer.innerHTML = '';
+            
+            if (dataToRender.length === 0) {
+                noMarketsMessage.classList.remove('hidden');
+                listContainer.classList.add('hidden');
+                loadMoreContainer.classList.add('hidden');
+                return;
+            }
+
+            noMarketsMessage.classList.add('hidden');
+            listContainer.classList.remove('hidden');
+            
+            const marketsToShow = dataToRender.slice(0, transportCurrentlyShown);
+            
+            marketsToShow.forEach((item, index) => {
+                const marketKey = `${item.market}|${item.variety}`; // Create a unique key
+                const checkboxId = `transport-market-${index}`;
+                const isSelected = currentSelections.has(marketKey);
+                const isMarketDisabled = selectedCheckboxes.length >= 2 && !isSelected;
+                
+                const checkboxDiv = document.createElement('div');
+                checkboxDiv.className = `flex items-center gap-2.5 p-3 bg-white rounded-lg border border-neutral-200 transition-all cursor-pointer
+                                        ${isSelected ? 'border-primary bg-primary/5' : ''}
+                                        ${isMarketDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:border-primary hover:bg-primary/5'}`;
+                
+                checkboxDiv.innerHTML = `
+                    <input type="checkbox" id="${checkboxId}" 
+                           class="transport-market-checkbox w-4 h-4 rounded border-neutral-300 text-primary focus:ring-primary flex-shrink-0 cursor-pointer"
+                           data-market="${item.market}" 
+                           data-variety="${item.variety}" 
+                           data-price="${item.wholesale}"
+                           ${isSelected ? 'checked' : ''}
+                           ${isMarketDisabled ? 'disabled' : ''}>
+                    <label for="${checkboxId}" class="flex-1 text-sm font-medium text-neutral-800 leading-tight
+                                        ${isMarketDisabled ? 'cursor-not-allowed' : 'cursor-pointer'}">
+                        <span class="block">${item.market} – ${item.variety}</span>
+                        <span class="text-primary font-bold text-xs">${item.wholesale.toLocaleString()} KES/bag</span>
+                    </label>
+                `;
+                listContainer.appendChild(checkboxDiv);
+            });
+            
+            if (transportCurrentlyShown < dataToRender.length) {
+                loadMoreContainer.classList.remove('hidden');
+            } else {
+                loadMoreContainer.classList.add('hidden');
+            }
+            
+            document.querySelectorAll('.transport-market-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', handleMarketSelection);
+            });
+        }
+
+        function loadMoreMarkets() {
+            transportCurrentlyShown += transportMarketsPerLoad;
+            renderMarketList(marketData); // Pass the full marketData to ensure all are available
+        }
+
+        function initializeMarketSelectionList() {
+            const loadMoreBtn = document.getElementById('loadMoreTransportBtn');
+            
+            // Ensure initial count is not more than available data
+            transportCurrentlyShown = Math.min(transportMarketsPerLoad, marketData.length);
+            renderMarketList(marketData); // Render with the correct count
+            
+            loadMoreBtn.addEventListener('click', loadMoreMarkets);
+            
+            document.getElementById('deselectAllBtn').addEventListener('click', deselectAllMarkets);
+        }
+
+        function handleMarketSelection() {
+            const allCheckboxes = document.querySelectorAll('.transport-market-checkbox');
+            const selectedCheckboxes = document.querySelectorAll('.transport-market-checkbox:checked');
+            const selectionCountSpan = document.getElementById('selectionCount');
+            const deselectBtn = document.getElementById('deselectAllBtn');
+            
+            selectionCountSpan.textContent = `(${selectedCheckboxes.length} selected)`;
+            
+            if (selectedCheckboxes.length > 0) {
+                deselectBtn.classList.remove('hidden');
+            } else {
+                deselectBtn.classList.add('hidden');
+            }
+            
+            if (selectedCheckboxes.length >= 2) {
+                allCheckboxes.forEach(checkbox => {
+                    if (!checkbox.checked) {
+                        checkbox.disabled = true;
+                        checkbox.parentElement.classList.add('opacity-50', 'cursor-not-allowed');
+                        checkbox.parentElement.classList.remove('hover:border-primary', 'hover:bg-primary/5', 'cursor-pointer');
+                    }
+                });
+            } else {
+                allCheckboxes.forEach(checkbox => {
+                    checkbox.disabled = false;
+                    checkbox.parentElement.classList.remove('opacity-50', 'cursor-not-allowed');
+                    checkbox.parentElement.classList.add('hover:border-primary', 'hover:bg-primary/5', 'cursor-pointer');
+                });
+            }
+            
+            updateTransportInputs();
+            renderMarketList(marketData); // Re-render to update checkbox states
+        }
+        
+        function deselectAllMarkets() {
+            const allCheckboxes = document.querySelectorAll('.transport-market-checkbox');
+            allCheckboxes.forEach(checkbox => {
+                checkbox.checked = false;
+                checkbox.disabled = false;
+                checkbox.parentElement.classList.remove('opacity-50', 'cursor-not-allowed');
+                checkbox.parentElement.classList.add('hover:border-primary', 'hover:bg-primary/5', 'cursor-pointer');
+            });
+            
+            document.getElementById('selectionCount').textContent = '(0 selected)';
+            document.getElementById('deselectAllBtn').classList.add('hidden');
+            
+            document.getElementById('transportInputsSection').classList.add('hidden');
+            
+            document.getElementById('netResultsSection').classList.add('hidden');
+
+            renderMarketList(marketData); // Re-render to reset states
+        }
+
+        function updateTransportInputs() {
+            const selectedCheckboxes = document.querySelectorAll('.transport-market-checkbox:checked');
+            const inputsSection = document.getElementById('transportInputsSection');
+            const perMarketInputsContainer = document.getElementById('perMarketTransportInputs');
+            
+            if (selectedCheckboxes.length > 0) {
+                inputsSection.classList.remove('hidden');
+                perMarketInputsContainer.innerHTML = ''; 
+                
+                selectedCheckboxes.forEach(checkbox => {
+                    const market = checkbox.dataset.market;
+                    const variety = checkbox.dataset.variety;
+                    const price = checkbox.dataset.price;
+                    const id = `${market.replace(/\s+/g, '-')}-${variety.replace(/\s+/g, '-')}`.toLowerCase(); // Create a more robust ID
+                    
+                    const inputBlock = document.createElement('div');
+                    inputBlock.className = 'bg-white rounded-xl p-5 border-2 border-neutral-200 shadow-sm';
+                    inputBlock.innerHTML = `
+                        <h5 class="font-bold text-neutral-900 mb-3 flex items-center gap-2">
+                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2L4 7v10c0 5.55 3.84 10.74 8 12 4.16-1.26 8-6.45 8-12V7l-8-5z"/>
+                            </svg>
+                            ${market} – ${variety} <span class="text-sm text-neutral-600 font-normal">(${parseInt(price).toLocaleString()} KES per bag)</span>
+                        </h5>
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-neutral-700 mb-2">Transport cost per bag (KES, optional)</label>
+                                <input type="number" id="perBag-${id}" min="0" step="10" placeholder="e.g., 200"
+                                       class="transport-per-bag w-full px-4 py-2.5 border-2 border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all"
+                                       data-market="${market}" data-variety="${variety}">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-neutral-700 mb-2">OR total transport cost for this trip (KES, optional)</label>
+                                <input type="number" id="totalTrip-${id}" min="0" step="100" placeholder="e.g., 2000"
+                                       class="transport-total-trip w-full px-4 py-2.5 border-2 border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all"
+                                       data-market="${market}" data-variety="${variety}">
+                            </div>
+                        </div>
+                    `;
+                    perMarketInputsContainer.appendChild(inputBlock);
+                });
+                
+                document.querySelectorAll('.transport-per-bag').forEach(input => {
+                    input.addEventListener('input', function() {
+                        const id = this.id.replace('perBag-', '');
+                        const totalInput = document.getElementById(`totalTrip-${id}`);
+                        if (this.value) {
+                            totalInput.disabled = true;
+                            totalInput.classList.add('bg-neutral-100', 'cursor-not-allowed', 'opacity-75');
+                        } else {
+                            totalInput.disabled = false;
+                            totalInput.classList.remove('bg-neutral-100', 'cursor-not-allowed', 'opacity-75');
+                        }
+                    });
+                });
+                
+                document.querySelectorAll('.transport-total-trip').forEach(input => {
+                    input.addEventListener('input', function() {
+                        const id = this.id.replace('totalTrip-', '');
+                        const perBagInput = document.getElementById(`perBag-${id}`);
+                        if (this.value) {
+                            perBagInput.disabled = true;
+                            perBagInput.classList.add('bg-neutral-100', 'cursor-not-allowed', 'opacity-75');
+                        } else {
+                            perBagInput.disabled = false;
+                            perBagInput.classList.remove('bg-neutral-100', 'cursor-not-allowed', 'opacity-75');
+                        }
+                    });
+                });
+            } else {
+                inputsSection.classList.add('hidden');
+            }
+        }
+
+        function calculateNetProfit() {
+            const selectedCheckboxes = document.querySelectorAll('.transport-market-checkbox:checked');
+            const numberOfBags = parseInt(document.getElementById('numberOfBags').value) || 10;
+            const results = [];
+            
+            if (numberOfBags <= 0) {
+                alert('Please enter a valid number of bags.');
+                return;
+            }
+
+            selectedCheckboxes.forEach(checkbox => {
+                const market = checkbox.dataset.market;
+                const variety = checkbox.dataset.variety;
+                const price = parseInt(checkbox.dataset.price);
+                const id = `${market.replace(/\s+/g, '-')}-${variety.replace(/\s+/g, '-')}`.toLowerCase(); // Use consistent ID generation
+                
+                const perBagInput = document.getElementById(`perBag-${id}`);
+                const totalTripInput = document.getElementById(`totalTrip-${id}`);
+                
+                let transportPerBag = 0;
+                if (perBagInput && perBagInput.value) {
+                    transportPerBag = parseInt(perBagInput.value);
+                } else if (totalTripInput && totalTripInput.value) {
+                    transportPerBag = Math.round(parseInt(totalTripInput.value) / numberOfBags);
+                }
+                
+                const netPerBag = price - transportPerBag;
+                const totalNet = netPerBag * numberOfBags;
+                
+                results.push({
+                    market,
+                    variety,
+                    price,
+                    transportPerBag,
+                    netPerBag,
+                    totalNet
+                });
+            });
+            
+            results.sort((a, b) => b.totalNet - a.totalNet);
+            
+            displayNetResults(results, numberOfBags);
+        }
+
+        function displayNetResults(results, numberOfBags) {
+            const resultsSection = document.getElementById('netResultsSection');
+            const tableBody = document.getElementById('netResultsTableBody');
+            const cardsList = document.getElementById('netResultsCardsList');
+            
+            resultsSection.classList.remove('hidden');
+            tableBody.innerHTML = '';
+            cardsList.innerHTML = '';
+            
+            results.forEach((result, index) => {
+                const isBest = index === 0;
+                const rowClass = isBest ? 'bg-green-50 border-l-4 border-green-600' : 'bg-white';
+                
+                const row = document.createElement('tr');
+                row.className = rowClass;
+                row.innerHTML = `
+                    <td class="px-4 py-4 font-semibold text-neutral-900">${result.market} – ${result.variety}</td>
+                    <td class="px-4 py-4 text-right text-neutral-700">${result.price.toLocaleString()} KES</td>
+                    <td class="px-4 py-4 text-right text-neutral-700">${result.transportPerBag.toLocaleString()} KES</td>
+                    <td class="px-4 py-4 text-right text-green-700 font-semibold">${result.netPerBag.toLocaleString()} KES</td>
+                    <td class="px-4 py-4 text-right text-green-800 font-bold">${result.totalNet.toLocaleString()} KES</td>
+                    <td class="px-4 py-4 text-center">
+                        ${isBest ? '<span class="inline-block px-3 py-1 bg-green-600 text-white text-xs font-semibold rounded-full">Best Net</span>' : ''}
+                    </td>
+                `;
+                tableBody.appendChild(row);
+                
+                const card = document.createElement('div');
+                card.className = `${isBest ? 'bg-green-50 border-green-600' : 'bg-white border-neutral-200'} rounded-lg p-4 border-2 shadow-sm`;
+                card.innerHTML = `
+                    <div class="flex items-center justify-between mb-3">
+                        <h5 class="font-semibold text-neutral-900">${result.market} – ${result.variety}</h5>
+                        ${isBest ? '<span class="inline-block px-2.5 py-1 bg-green-600 text-white text-xs font-semibold rounded-full">Best Net</span>' : ''}
+                    </div>
+                    <div class="grid grid-cols-2 gap-3 text-sm">
+                        <div>
+                            <span class="text-neutral-600">Price per bag:</span>
+                            <p class="font-semibold text-neutral-900">${result.price.toLocaleString()} KES</p>
+                        </div>
+                        <div>
+                            <span class="text-neutral-600">Transport per bag:</span>
+                            <p class="font-semibold text-neutral-900">${result.transportPerBag.toLocaleString()} KES</p>
+                        </div>
+                        <div>
+                            <span class="text-neutral-600">Net per bag:</span>
+                            <p class="font-semibold text-green-700">${result.netPerBag.toLocaleString()} KES</p>
+                        </div>
+                        <div>
+                            <span class="text-neutral-600">Total net:</span>
+                            <p class="font-bold text-green-800">${result.totalNet.toLocaleString()} KES</p>
+                        </div>
+                    </div>
+                `;
+                cardsList.appendChild(card);
+            });
+            
+            resultsSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeMarketSelectionList(); 
+            
+            document.getElementById('openTransportCardBtn').addEventListener('click', function() {
+                const transportCard = document.getElementById('transportCard');
+                transportCard.classList.remove('hidden');
+                transportCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+            
+            document.getElementById('closeTransportCardBtn').addEventListener('click', function() {
+                document.getElementById('transportCard').classList.add('hidden');
+                document.getElementById('netResultsSection').classList.add('hidden');
+            });
+            
+            document.getElementById('calculateNetBtn').addEventListener('click', calculateNetProfit);
+            
+            updateTransportInputs(); 
+        });
+
+        document.getElementById('loadMoreTransportBtn').addEventListener('click', function() {
+            loadMoreMarkets();
+        });
     </script>
 </body>
 </html>

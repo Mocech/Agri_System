@@ -45,35 +45,86 @@
   }
 }
 
-/* Selling Time Buttons */
+/* Enhanced advice section with better visual prominence and animations */
+.advice-section {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.advice-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #22c55e, #10b981, #14b8a6);
+  border-radius: 1rem 1rem 0 0;
+}
+
+.advice-section:hover {
+  box-shadow: 0 12px 28px rgba(34, 197, 94, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Selling Time Buttons with improved responsive design */
 .selling-time-btn {
-  padding: 0.5rem 1rem;
+  padding: 0.625rem 1.125rem;
   font-size: 0.875rem;
   font-weight: 600;
   color: #525252;
-  background: transparent;
-  border-radius: 0.5rem;
-  transition: all 0.2s;
+  background: white;
+  border: 2px solid #e5e5e5;
+  border-radius: 0.625rem;
+  transition: all 0.2s ease;
   white-space: nowrap;
-  min-height: 40px;
+  min-height: 42px;
+  cursor: pointer;
 }
 
 .selling-time-btn:hover {
-  background: #f5f5f5;
-  color: #262626;
+  background: #f9fafb;
+  border-color: #22c55e;
+  color: #166534;
+  transform: translateY(-1px);
 }
 
-/* Updated active button color to use primary green from main.css */
+/* Updated active button with stronger visual feedback */
 .selling-time-btn.active {
   background: #22c55e;
   color: white;
-  box-shadow: 0 2px 4px rgba(34, 197, 94, 0.2);
+  border-color: #22c55e;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+  transform: scale(1.02);
 }
 
-@media (max-width: 640px) {
+/* Improved mobile responsiveness for selling time buttons */
+@media (max-width: 768px) {
+  .advice-section {
+    padding: 1.25rem 1rem;
+  }
+
   .selling-time-btn {
-    padding: 0.5rem 0.75rem;
+    padding: 0.625rem 0.875rem;
     font-size: 0.8125rem;
+    min-height: 40px;
+    flex: 1 1 auto;
+  }
+
+  /* Make buttons stack better on very small screens */
+  @media (max-width: 380px) {
+    .selling-time-btn {
+      padding: 0.625rem 0.75rem;
+      font-size: 0.75rem;
+    }
+  }
+}
+
+/* Enhanced mobile layout for advice section */
+@media (max-width: 1024px) {
+  .advice-section .lg\:flex-row {
+    gap: 1.5rem;
   }
 }
 
@@ -135,7 +186,7 @@ input[type="checkbox"]:focus {
   justify-content: space-between;
   padding: 0.75rem 1rem;
   background: white;
-  border: 2px solid #e5e5e5;
+  border: 1px solid #d4d4d8;
   border-radius: 0.5rem;
   font-size: 0.9375rem;
   color: #262626;
@@ -145,15 +196,15 @@ input[type="checkbox"]:focus {
   text-align: left;
 }
 
-/* Updated hover and focus border color to use primary green from main.css */
 .custom-dropdown-trigger:hover {
-  border-color: #22c55e;
+  border-color: #86efac;
+  background: #f0fdf4;
 }
 
 .custom-dropdown-trigger:focus {
   outline: none;
   border-color: #22c55e;
-  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.08);
 }
 
 .dropdown-value {
@@ -185,10 +236,9 @@ input[type="checkbox"]:focus {
   left: 0;
   right: 0;
   background: white;
-  /* Updated border color to use primary green from main.css */
-  border: 2px solid #22c55e;
-  border-radius: 0.75rem;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
   z-index: 50;
   overflow: hidden;
   animation: dropdownSlideIn 0.2s ease-out;
@@ -208,11 +258,10 @@ input[type="checkbox"]:focus {
 .dropdown-search {
   position: relative;
   padding: 0.75rem;
-  border-bottom: 1px solid #e5e5e5;
-  background: #f9fafb;
+  border-bottom: 1px solid #f3f4f6;
+  background: #fafafa;
 }
 
-/* Updated search icon color to use primary green from main.css */
 .dropdown-search-icon {
   position: absolute;
   left: 1.25rem;
@@ -227,49 +276,45 @@ input[type="checkbox"]:focus {
 .dropdown-search-input {
   width: 100%;
   padding: 0.625rem 0.75rem 0.625rem 2.5rem;
-  border: 2px solid #e5e5e5;
-  border-radius: 0.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
   font-size: 0.875rem;
   color: #262626;
   transition: all 0.2s;
+  background: white;
 }
 
-/* Updated input focus color to use primary green from main.css */
 .dropdown-search-input:focus {
   outline: none;
   border-color: #22c55e;
-  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.08);
 }
 
 .dropdown-search-input::placeholder {
   color: #a3a3a3;
 }
 
-/* Reduced max-height and ensured overflow is controlled */
 .dropdown-list {
-  /* Further reduced dropdown height to prevent it from being too tall */
   max-height: 160px;
   overflow-y: auto;
   padding: 0.5rem;
 }
 
 .dropdown-list::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 .dropdown-list::-webkit-scrollbar-track {
-  background: #f5f5f5;
-  border-radius: 4px;
+  background: transparent;
 }
 
-/* Updated scrollbar thumb color to use primary green from main.css */
 .dropdown-list::-webkit-scrollbar-thumb {
-  background: #22c55e;
-  border-radius: 4px;
+  background: #d4d4d8;
+  border-radius: 3px;
 }
 
 .dropdown-list::-webkit-scrollbar-thumb:hover {
-  background: #16a34a;
+  background: #a1a1aa;
 }
 
 .dropdown-item {
@@ -281,9 +326,8 @@ input[type="checkbox"]:focus {
   transition: all 0.15s;
 }
 
-/* Updated hover and active colors to use primary green from main.css */
 .dropdown-item:hover {
-  background: #dcfce7;
+  background: #f0fdf4;
   color: #166534;
 }
 
@@ -297,7 +341,6 @@ input[type="checkbox"]:focus {
   padding: 1.5rem;
   text-align: center;
   color: #737373;
-  font-size: 0.875rem;
 }
 
 /* Mobile responsive adjustments for dropdowns */
@@ -397,8 +440,275 @@ input[type="checkbox"]:focus {
 
 /* Transport Section Styling */
 #transportSection {
-  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
-  animation: fadeIn 0.5s ease-in-out;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+#emptyState {
+  transition: all 0.3s ease;
+}
+
+/* Selected Market Cards in Transport Section */
+.transport-market-card {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border: 2px solid #e2e8f0;
+  border-radius: 1rem;
+  padding: 1.25rem;
+  transition: all 0.2s ease;
+}
+
+.transport-market-card:hover {
+  border-color: #22c55e;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.1);
+}
+
+.transport-market-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.transport-market-title {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: #0f172a;
+  flex: 1;
+}
+
+.transport-price-badge {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  color: white;
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgba(34, 197, 94, 0.25);
+}
+
+/* Transport Input Groups */
+.transport-inputs-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .transport-inputs-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.transport-input-group {
+  position: relative;
+}
+
+.transport-input-label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 0.5rem;
+}
+
+.transport-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.transport-input {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 0.625rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #0f172a;
+  transition: all 0.2s ease;
+  background: white;
+}
+
+.transport-input:focus {
+  outline: none;
+  border-color: #22c55e;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+}
+
+.transport-input:disabled {
+  background: #f1f5f9;
+  color: #94a3b8;
+  cursor: not-allowed;
+}
+
+.transport-input-suffix {
+  position: absolute;
+  right: 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #64748b;
+  pointer-events: none;
+}
+
+/* OR Divider */
+.transport-or-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0.5rem 0;
+  color: #94a3b8;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.transport-or-divider::before,
+.transport-or-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #cbd5e1, transparent);
+}
+
+/* Mobile Responsive Transport Cards */
+@media (max-width: 640px) {
+  .transport-market-card {
+    padding: 1rem;
+  }
+
+  .transport-market-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .transport-market-title {
+    font-size: 1rem;
+  }
+
+  .transport-price-badge {
+    font-size: 0.8125rem;
+    padding: 0.3125rem 0.75rem;
+  }
+
+  .transport-input {
+    padding: 0.75rem 0.875rem;
+    font-size: 0.875rem;
+  }
+
+  .transport-input-label {
+    font-size: 0.75rem;
+  }
+}
+
+/* Calculate Button Enhancement */
+#calculateBtn {
+  position: relative;
+  overflow: hidden;
+}
+
+#calculateBtn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+#calculateBtn:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Net Results Enhancement */
+/* Simplified net results table styling - cleaner and more professional */
+.net-results-best-row {
+  background: #f0fdf4;
+  border-left: 4px solid #22c55e;
+  position: relative;
+}
+
+.net-results-best-row::before {
+  /* Removed existing content to simplify */
+  content: ""; /* Keep the selector, but make it do nothing visually now */
+  position: absolute;
+  left: -2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .net-results-best-row::before {
+    display: none;
+  }
+}
+
+/* Cleaner mobile net results cards */
+.net-result-card {
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  transition: all 0.2s ease;
+}
+
+.net-result-card:hover {
+  border-color: #22c55e;
+  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.1);
+}
+
+.net-result-card.best {
+  background: #f0fdf4;
+  border-color: #22c55e;
+  border-width: 2px;
+}
+
+/* Smooth animations for dynamic content */
+.transport-market-card,
+#emptyState,
+#transportInputs {
+  animation: fadeInUp 0.3s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Loading state for calculate button */
+#calculateBtn.loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+#calculateBtn.loading::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  left: 50%;
+  margin-left: -8px;
+  margin-top: -8px;
+  border: 2px solid white;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
 }
 
 @keyframes fadeIn {
@@ -413,8 +723,9 @@ input[type="checkbox"]:focus {
 }
 
 /* Net Results Highlight */
+/* Removed heavy gradients and excessive styling */
 .net-result-best {
-  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%) !important;
+  background: #f0fdf4 !important;
   border: 2px solid #22c55e !important;
 }
 
@@ -504,4 +815,250 @@ button[type="submit"]:active {
     padding: 1rem 2rem;
     min-height: 52px;
   }
+}
+
+/* Transport Modal Styles */
+#transportModal {
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+#transportModal > div {
+  animation: modalSlideIn 0.3s ease-out;
+  max-height: 90vh;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Modal Header Gradient */
+#transportModal .bg-gradient-to-r {
+  position: relative;
+  overflow: hidden;
+}
+
+#transportModal .bg-gradient-to-r::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Modal Body Scrollbar */
+#transportModal .overflow-y-auto::-webkit-scrollbar {
+  width: 10px;
+}
+
+#transportModal .overflow-y-auto::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 5px;
+}
+
+#transportModal .overflow-y-auto::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 5px;
+}
+
+#transportModal .overflow-y-auto::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Modal Close Button Enhancement */
+#closeTransportModalBtn {
+  transition: all 0.2s ease;
+}
+
+#closeTransportModalBtn:hover {
+  transform: rotate(90deg);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Modal Empty State */
+#modalEmptyState {
+  animation: pulseSubtle 2s ease-in-out infinite;
+}
+
+@keyframes pulseSubtle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+
+/* Modal Transport Cards Enhancement */
+#modalSelectedMarketsList .transport-market-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#modalSelectedMarketsList .transport-market-card:hover {
+  transform: translateX(4px);
+}
+
+/* Modal Calculate Button */
+#modalCalculateBtn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+#modalCalculateBtn:hover {
+  box-shadow: 0 8px 20px rgba(251, 191, 36, 0.4);
+}
+
+#modalCalculateBtn:active {
+  transform: scale(0.97);
+}
+
+/* Modal Cancel Button */
+#modalCancelBtn {
+  transition: all 0.2s ease;
+}
+
+#modalCancelBtn:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+/* Modal Net Results Table Enhancement */
+/* Simplified animation - removed pulse effects */
+#modalNetResultsSection {
+  animation: fadeInUp 0.3s ease-out;
+}
+
+/* Removed highlightPulse animation entirely as it's no longer used or desired */
+/* #modalNetResultsTableBody .net-results-best-row {
+  animation: highlightPulse 1.5s ease-in-out;
+}
+
+@keyframes highlightPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+  }
+  50% {
+    box-shadow: 0 0 20px 5px rgba(34, 197, 94, 0.3);
+  }
+} */
+
+/* Mobile Modal Responsive Styles */
+@media (max-width: 768px) {
+  #transportModal {
+    padding: 1rem;
+  }
+
+  #transportModal > div {
+    max-height: 95vh;
+    margin: 0;
+  }
+
+  #transportModal .p-6 {
+    padding: 1.25rem;
+  }
+
+  #transportModal .sm\:p-8 {
+    padding: 1.5rem;
+  }
+
+  /* Stack buttons vertically on mobile */
+  #modalTransportInputs .flex-col {
+    flex-direction: column;
+  }
+
+  #modalTransportInputs button {
+    width: 100%;
+  }
+
+  /* Make modal header more compact on mobile */
+  #transportModal .text-xl {
+    font-size: 1.125rem;
+  }
+
+  #transportModal .text-2xl {
+    font-size: 1.25rem;
+  }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+  #transportModal {
+    padding: 0.5rem;
+  }
+
+  #transportModal > div {
+    border-radius: 1rem;
+  }
+
+  .transport-market-card {
+    padding: 0.875rem;
+  }
+
+  .transport-inputs-grid {
+    gap: 0.75rem;
+  }
+
+  #modalCalculateBtn {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+/* Step 2 Info Card Enhancement */
+#openTransportModalBtn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+#openTransportModalBtn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+/* Improved market selection list styling for scalability */
+/* Custom scrollbar for market list */
+.market-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.market-scroll::-webkit-scrollbar-track {
+  background: #f3f4f6;
+  border-radius: 4px;
 }
