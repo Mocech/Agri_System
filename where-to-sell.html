@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Where to Sell - FarmDecide Kenya</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/tailwind-config.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/where-to-sell.css">
+</head>
+<body class="bg-stone-50 text-neutral-900">
+    
+     <!-- Navigation -->
+    <header class="navbar">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="index.html" class="navbar-brand">
+                    <svg class="w-10 h-10 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2L4 7v10c0 5.55 3.84 10.74 8 12 4.16-1.26 8-6.45 8-12V7l-8-5z"/>
+                    </svg>
+                    <span>FarmDecide</span>
+                </a>
+                
+                <!-- Desktop Nav Links -->
+                <div class="hidden md:flex items-center gap-10">
+                    <a href="index.html" class="navbar-link active">Home</a>
+                    <a href="where-to-sell.html" class="navbar-link">Where to Sell</a>
+                    <a href="what-to-plant.html" class="navbar-link">What to Plant</a>
+                </div>
+                
+                <!-- Right Side -->
+                <div class="flex items-center gap-4">
+                    <!-- County Selector Button -->
+                    <button class="county-selector-btn hidden sm:flex" onclick="openCountySelector()">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                        <span id="countyDisplay">Select County</span>
+                    </button>
+                    
+                    <!-- Added Get Started button back to navbar -->
+                    <a href="where-to-sell.html" class="hidden md:inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-900 font-semibold rounded-lg hover:from-yellow-500 hover:to-yellow-600 transition-all shadow-md hover:shadow-lg">
+                        Get Started
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                    
+                    <!-- Mobile Menu Button -->
+                    <button class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" onclick="toggleMobileMenu()">
+                        <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Improved Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden pb-4 border-t border-gray-100 mt-2 pt-4">
+                <div class="space-y-3">
+                    <a href="index.html" class="block text-green-600 font-semibold py-2 px-3 rounded-lg bg-green-50">Home</a>
+                    <a href="where-to-sell.html" class="block text-gray-600 hover:text-green-600 hover:bg-gray-50 py-2 px-3 rounded-lg transition-all">Where to Sell</a>
+                    <a href="what-to-plant.html" class="block text-gray-600 hover:text-green-600 hover:bg-gray-50 py-2 px-3 rounded-lg transition-all">What to Plant</a>
+                    <button class="county-selector-btn w-full justify-center" onclick="openCountySelector()">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                        <span id="countyDisplayMobile">Select County</span>
+                    </button>
+                    <!-- Added Get Started button to mobile menu -->
+                    <a href="where-to-sell.html" class="flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-900 font-semibold rounded-lg">
+                        Get Started
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- Dark hero section -->
+    <section class="sell-hero relative">
+        <img src="bck.jpg?height=600&width=1600" alt="Market Background" class="hero-bg-image">
+        <div class="hero-content-wrapper">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
+                <div class="max-w-3xl">
+                    <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full mb-6 border border-white/20">
+                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                        <span class="text-sm text-white font-medium">Market Prices</span>
+                    </div>
+                    
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-5 text-white leading-tight">
+                        Find the Best Market for Your Harvest
+                    </h1>
+                    
+                    <p class="text-base sm:text-lg text-white/90 leading-relaxed max-w-2xl">
+                        Compare prices across markets and calculate net profit after transport costs.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="py-8 sm:py-12 bg-stone-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Step 1: Search Form -->
+            <div class="bg-white rounded-2xl shadow-sm p-5 sm:p-8 mb-8 border border-neutral-200">
+                <h2 class="text-xl sm:text-2xl font-bold mb-5 text-neutral-900">Search Markets</h2>
+                
+                <form id="searchForm" class="space-y-6">
+                    <!-- Changed grid to 3 columns on desktop to fit all inputs horizontally -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                        <!-- Replaced native select with custom searchable dropdown for County -->
+                        <div>
+                            <label class="block text-sm font-semibold text-neutral-700 mb-2">County</label>
+                            <div class="custom-dropdown" id="countyDropdown">
+                                <button type="button" class="custom-dropdown-trigger" onclick="toggleDropdown('county')" aria-expanded="false">
+                                    <span id="countyValue" class="dropdown-value">Select County</span>
+                                    <svg class="dropdown-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                    </svg>
+                                </button>
+                                <div class="custom-dropdown-menu hidden" id="countyDropdownMenu">
+                                    <div class="dropdown-search">
+                                        <svg class="dropdown-search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                        </svg>
+                                        <input type="text" id="countySearch" class="dropdown-search-input" placeholder="Search county..." onkeyup="filterDropdown('county')">
+                                    </div>
+                                    <div class="dropdown-list" id="countyList">
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Baringo', 'baringo')">Baringo</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Bomet', 'bomet')">Bomet</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Bungoma', 'bungoma')">Bungoma</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Busia', 'busia')">Busia</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Elgeyo-Marakwet', 'elgeyo-marakwet')">Elgeyo-Marakwet</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Embu', 'embu')">Embu</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Garissa', 'garissa')">Garissa</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Homa Bay', 'homa-bay')">Homa Bay</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Isiolo', 'isiolo')">Isiolo</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Kajiado', 'kajiado')">Kajiado</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Kakamega', 'kakamega')">Kakamega</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Kericho', 'kericho')">Kericho</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Kiambu', 'kiambu')">Kiambu</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Kilifi', 'kilifi')">Kilifi</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Kirinyaga', 'kirinyaga')">Kirinyaga</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Kisii', 'kisii')">Kisii</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Kisumu', 'kisumu')">Kisumu</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Kitui', 'kitui')">Kitui</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Kwale', 'kwale')">Kwale</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Laikipia', 'laikipia')">Laikipia</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Lamu', 'lamu')">Lamu</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Machakos', 'machakos')">Machakos</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Makueni', 'makueni')">Makueni</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Mandera', 'mandera')">Mandera</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Marsabit', 'marsabit')">Marsabit</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Meru', 'meru')">Meru</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Migori', 'migori')">Migori</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Mombasa', 'mombasa')">Mombasa</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Murang\'a', 'muranga')">Murang'a</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Nairobi', 'nairobi')">Nairobi</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Nakuru', 'nakuru')">Nakuru</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Nandi', 'nandi')">Nandi</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Narok', 'narok')">Narok</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Nyamira', 'nyamira')">Nyamira</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Nyandarua', 'nyandarua')">Nyandarua</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Nyeri', 'nyeri')">Nyeri</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Samburu', 'samburu')">Samburu</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Siaya', 'siaya')">Siaya</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Taita-Taveta', 'taita-taveta')">Taita-Taveta</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Tana River', 'tana-river')">Tana River</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Tharaka-Nithi', 'tharaka-nithi')">Tharaka-Nithi</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Trans-Nzoia', 'trans-nzoia')">Trans-Nzoia</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Turkana', 'turkana')">Turkana</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Uasin Gishu', 'uasin-gishu')">Uasin Gishu</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Vihiga', 'vihiga')">Vihiga</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'Wajir', 'wajir')">Wajir</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('county', 'West Pokot', 'west-pokot')">West Pokot</div>
+                                    </div>
+                                    <div class="dropdown-no-results hidden" id="countyNoResults">
+                                        <p>No counties found</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="countySelect" name="county" value="">
+                        </div>
+                        
+                        <!-- Replaced native select with custom searchable dropdown for Crop -->
+                        <div>
+                            <label class="block text-sm font-semibold text-neutral-700 mb-2">Crop</label>
+                            <div class="custom-dropdown" id="cropDropdown">
+                                <button type="button" class="custom-dropdown-trigger" onclick="toggleDropdown('crop')" aria-expanded="false">
+                                    <span id="cropValue" class="dropdown-value">Select Crop</span>
+                                    <svg class="dropdown-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                    </svg>
+                                </button>
+                                <div class="custom-dropdown-menu hidden" id="cropDropdownMenu">
+                                    <div class="dropdown-search">
+                                        <svg class="dropdown-search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                        </svg>
+                                        <input type="text" id="cropSearch" class="dropdown-search-input" placeholder="Search crop..." onkeyup="filterDropdown('crop')">
+                                    </div>
+                                    <div class="dropdown-list" id="cropList">
+                                        <div class="dropdown-item" onclick="selectDropdownItem('crop', 'Dry Maize', 'maize')">Dry Maize</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('crop', 'Beans', 'beans')">Beans</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('crop', 'Green Grams', 'green-grams')">Green Grams</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('crop', 'Cowpeas', 'cowpeas')">Cowpeas</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('crop', 'Sorghum', 'sorghum')">Sorghum</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('crop', 'Millet', 'millet')">Millet</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('crop', 'Wheat', 'wheat')">Wheat</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('crop', 'Rice', 'rice')">Rice</div>
+                                    </div>
+                                    <div class="dropdown-no-results hidden" id="cropNoResults">
+                                        <p>No crops found</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="cropSelect" name="crop" value="">
+                        </div>
+                        
+                        <!-- Moved Variety dropdown into the same grid for horizontal layout -->
+                        <!-- Replaced native select with custom searchable dropdown for Variety -->
+                        <div>
+                            <label class="block text-sm font-semibold text-neutral-700 mb-2">Variety (optional)</label>
+                            <div class="custom-dropdown" id="varietyDropdown">
+                                <button type="button" class="custom-dropdown-trigger" onclick="toggleDropdown('variety')" aria-expanded="false">
+                                    <span id="varietyValue" class="dropdown-value">All varieties (show everything)</span>
+                                    <svg class="dropdown-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                    </svg>
+                                </button>
+                                <div class="custom-dropdown-menu hidden" id="varietyDropdownMenu">
+                                    <div class="dropdown-search">
+                                        <svg class="dropdown-search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                        </svg>
+                                        <input type="text" id="varietySearch" class="dropdown-search-input" placeholder="Search variety..." onkeyup="filterDropdown('variety')">
+                                    </div>
+                                    <div class="dropdown-list" id="varietyList">
+                                        <div class="dropdown-item" onclick="selectDropdownItem('variety', 'All varieties (show everything)', 'all')">All varieties (show everything)</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('variety', 'White Maize', 'white')">White Maize</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('variety', 'Yellow Maize', 'yellow')">Yellow Maize</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('variety', 'Mixed Maize', 'mixed')">Mixed Maize</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('variety', 'Red Beans', 'red-beans')">Red Beans</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('variety', 'Yellow Beans', 'yellow-beans')">Yellow Beans</div>
+                                        <div class="dropdown-item" onclick="selectDropdownItem('variety', 'Rosecoco Beans', 'rosecoco')">Rosecoco Beans</div>
+                                    </div>
+                                    <div class="dropdown-no-results hidden" id="varietyNoResults">
+                                        <p>No varieties found</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="varietySelect" name="variety" value="all">
+                        </div>
+                    </div>
+                    
+                    <!-- Improved button visibility with clear spacing and full width on mobile -->
+                    <div class="mt-8 pt-4 border-t border-neutral-100">
+                        <button type="submit" class="w-full md:w-auto bg-primary text-white font-semibold px-8 py-3.5 rounded-lg hover:bg-primary-dark transition-all shadow-md hover:shadow-lg min-h-[56px] text-base">
+                            See best markets
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Results Section (hidden initially) -->
+            <div id="resultsSection" class="hidden">
+                
+                <!-- Recommendation Strip + Selling Time Control -->
+                <div class="bg-gradient-to-br from-primary/10 to-yellow-50 rounded-2xl p-5 sm:p-6 mb-6 border-2 border-primary/20">
+                    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
+                        <!-- Recommendation Text -->
+                        <div class="flex-1">
+                            <h3 class="text-sm font-semibold text-primary mb-2" id="adviceTitle">Advice for: Sell now (today)</h3>
+                            <p class="text-base sm:text-lg text-neutral-900 leading-relaxed" id="adviceText">
+                                For <strong>Dry Maize – Yellow Maize</strong> in <strong>Kitui</strong>, the best price per bag <strong>today</strong> is in <strong>Kitui Town</strong> at about <strong class="text-primary">5,000 KES per bag (wholesale)</strong>.
+                            </p>
+                            <p class="text-xs text-neutral-600 mt-2">Prices are based on KAMIS market data and may differ slightly on the ground.</p>
+                        </div>
+                        
+                        <!-- Selling Time Segmented Control -->
+                        <div class="lg:min-w-fit">
+                            <label class="block text-sm font-semibold text-neutral-700 mb-2">Selling time:</label>
+                            <div class="inline-flex flex-wrap gap-2 bg-white p-1.5 rounded-lg border border-neutral-200 shadow-sm">
+                                <button type="button" class="selling-time-btn active" data-time="now">Now</button>
+                                <button type="button" class="selling-time-btn" data-time="2weeks">2 weeks</button>
+                                <button type="button" class="selling-time-btn" data-time="1month">1 month</button>
+                                <button type="button" class="selling-time-btn" data-time="2-3months">2–3 months</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Variety Filter Bar -->
+                <div class="bg-white rounded-xl p-4 sm:p-5 mb-6 border border-neutral-200">
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+                        <span class="text-sm font-semibold text-neutral-700">Filter varieties:</span>
+                        <div class="flex flex-wrap gap-2">
+                            <button type="button" class="variety-filter-btn active" data-variety="all">All</button>
+                            <button type="button" class="variety-filter-btn" data-variety="white">White</button>
+                            <button type="button" class="variety-filter-btn" data-variety="yellow">Yellow</button>
+                            <button type="button" class="variety-filter-btn" data-variety="mixed">Mixed</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Price Table -->
+                <div class="bg-white rounded-2xl shadow-sm p-5 sm:p-6 mb-8 border border-neutral-200">
+                    <h2 class="text-xl sm:text-2xl font-bold mb-2 text-neutral-900" id="tableTitle">Markets for Dry Maize in Kitui – Now</h2>
+                    <p class="text-sm text-neutral-600 mb-5" id="tableSubtitle">Wholesale prices per bag</p>
+                    
+                    <!-- Desktop Table -->
+                    <div class="hidden lg:block overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-gradient-to-r from-primary/5 to-primary/10">
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-sm font-semibold text-neutral-900">
+                                        <input type="checkbox" id="selectAllDesktop" class="w-4 h-4 rounded border-neutral-300 text-primary focus:ring-primary mr-2">
+                                    </th>
+                                    <th class="px-4 py-3 text-left text-sm font-semibold text-neutral-900">Market</th>
+                                    <th class="px-4 py-3 text-left text-sm font-semibold text-neutral-900">Variety</th>
+                                    <th class="px-4 py-3 text-right text-sm font-semibold text-neutral-900">Wholesale (KES)</th>
+                                    <th class="px-4 py-3 text-right text-sm font-semibold text-neutral-900">Retail (KES)</th>
+                                    <th class="px-4 py-3 text-center text-sm font-semibold text-neutral-900">Trend</th>
+                                    <th class="px-4 py-3 text-center text-sm font-semibold text-neutral-900">Confidence</th>
+                                </tr>
+                            </thead>
+                            <tbody id="priceTableBody" class="divide-y divide-neutral-200">
+                                <!-- Sample data rows -->
+                                <tr class="hover:bg-primary/5 transition-colors" data-variety="yellow">
+                                    <td class="px-4 py-4">
+                                        <input type="checkbox" class="market-checkbox w-4 h-4 rounded border-neutral-300 text-primary focus:ring-primary" 
+                                               data-market="Kitui Town" data-variety="Yellow Maize" data-price="5000" data-type="wholesale">
+                                    </td>
+                                    <td class="px-4 py-4 text-neutral-900 font-medium">Kitui Town</td>
+                                    <td class="px-4 py-4 text-neutral-700">Yellow Maize</td>
+                                    <td class="px-4 py-4 text-right text-neutral-900 font-semibold">5,000</td>
+                                    <td class="px-4 py-4 text-right text-neutral-700">5,400</td>
+                                    <td class="px-4 py-4 text-center">
+                                        <span class="inline-flex items-center gap-1 px-3 py-1 bg-green-100 text-green-800 text-xs font-semibold rounded-full">
+                                            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M7 14l5-5 5 5H7z"/></svg>
+                                            Rising
+                                        </span>
+                                    </td>
+                                    <td class="px-4 py-4 text-center">
+                                        <span class="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">High</span>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="hover:bg-primary/5 transition-colors" data-variety="white">
+                                    <td class="px-4 py-4">
+                                        <input type="checkbox" class="market-checkbox w-4 h-4 rounded border-neutral-300 text-primary focus:ring-primary"
+                                               data-market="Mwingi" data-variety="White Maize" data-price="4800" data-type="wholesale">
+                                    </td>
+                                    <td class="px-4 py-4 text-neutral-900 font-medium">Mwingi</td>
+                                    <td class="px-4 py-4 text-neutral-700">White Maize</td>
+                                    <td class="px-4 py-4 text-right text-neutral-900 font-semibold">4,800</td>
+                                    <td class="px-4 py-4 text-right text-neutral-700">5,200</td>
+                                    <td class="px-4 py-4 text-center">
+                                        <span class="inline-flex items-center gap-1 px-3 py-1 bg-neutral-100 text-neutral-800 text-xs font-semibold rounded-full">
+                                            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M7 10h10v4H7v-4z"/></svg>
+                                            Stable
+                                        </span>
+                                    </td>
+                                    <td class="px-4 py-4 text-center">
+                                        <span class="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">High</span>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="hover:bg-primary/5 transition-colors" data-variety="yellow">
+                                    <td class="px-4 py-4">
+                                        <input type="checkbox" class="market-checkbox w-4 h-4 rounded border-neutral-300 text-primary focus:ring-primary"
+                                               data-market="Mutomo" data-variety="Yellow Maize" data-price="4600" data-type="wholesale">
+                                    </td>
+                                    <td class="px-4 py-4 text-neutral-900 font-medium">Mutomo</td>
+                                    <td class="px-4 py-4 text-neutral-700">Yellow Maize</td>
+                                    <td class="px-4 py-4 text-right text-neutral-900 font-semibold">4,600</td>
+                                    <td class="px-4 py-4 text-right text-neutral-700">5,000</td>
+                                    <td class="px-4 py-4 text-center">
+                                        <span class="inline-flex items-center gap-1 px-3 py-1 bg-red-100 text-red-800 text-xs font-semibold rounded-full">
+                                            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5H7z"/></svg>
+                                            Falling
+                                        </span>
+                                    </td>
+                                    <td class="px-4 py-4 text-center">
+                                        <span class="inline-block px-3 py-1 bg-amber-100 text-amber-800 text-xs font-semibold rounded-full">Medium</span>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="hover:bg-primary/5 transition-colors" data-variety="mixed">
+                                    <td class="px-4 py-4">
+                                        <input type="checkbox" class="market-checkbox w-4 h-4 rounded border-neutral-300 text-primary focus:ring-primary"
+                                               data-market="Ikutha" data-variety="Mixed Maize" data-price="4700" data-type="wholesale">
+                                    </td>
+                                    <td class="px-4 py-4 text-neutral-900 font-medium">Ikutha</td>
+                                    <td class="px-4 py-4 text-neutral-700">Mixed Maize</td>
+                                    <td class="px-4 py-4 text-right text-neutral-900 font-semibold">4,700</td>
+                                    <td class="px-4 py-4 text-right text-neutral-700">5,100</td>
+                                    <td class="px-4 py-4 text-center">
+                                        <span class="inline-flex items-center gap-1 px-3 py-1 bg-neutral-100 text-neutral-800 text-xs font-semibold rounded-full">
+                                            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M7 10h10v4H7v-4z"/></svg>
+                                            Stable
+                                        </span>
+                                    </td>
+                                    <td class="px-4 py-4 text-center">
+                                        <span class="inline-block px-3 py-1 bg-amber-100 text-amber-800 text-xs font-semibold rounded-full">Medium</span>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="hover:bg-primary/5 transition-colors" data-variety="white">
+                                    <td class="px-4 py-4">
+                                        <input type="checkbox" class="market-checkbox w-4 h-4 rounded border-neutral-300 text-primary focus:ring-primary"
+                                               data-market="Kyuso" data-variety="White Maize" data-price="4500" data-type="wholesale">
+                                    </td>
+                                    <td class="px-4 py-4 text-neutral-900 font-medium">Kyuso</td>
+                                    <td class="px-4 py-4 text-neutral-700">White Maize</td>
+                                    <td class="px-4 py-4 text-right text-neutral-900 font-semibold">4,500</td>
+                                    <td class="px-4 py-4 text-right text-neutral-700">4,900</td>
+                                    <td class="px-4 py-4 text-center">
+                                        <span class="inline-flex items-center gap-1 px-3 py-1 bg-green-100 text-green-800 text-xs font-semibold rounded-full">
+                                            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M7 14l5-5 5 5H7z"/></svg>
+                                            Rising
+                                        </span>
+                                    </td>
+                                    <td class="px-4 py-4 text-center">
+                                        <span class="inline-block px-3 py-1 bg-neutral-100 text-neutral-600 text-xs font-semibold rounded-full">Low</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Mobile Cards -->
+                    <div class="lg:hidden space-y-3" id="priceCardsList">
+                        <div class="border-2 border-neutral-200 rounded-xl p-4 hover:border-primary transition-all" data-variety="yellow">
+                            <div class="flex items-start gap-3 mb-3">
+                                <input type="checkbox" class="market-checkbox w-5 h-5 rounded border-neutral-300 text-primary focus:ring-primary mt-1"
+                                       data-market="Kitui Town" data-variety="Yellow Maize" data-price="5000" data-type="wholesale">
+                                <div class="flex-1">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <div>
+                                            <div class="font-semibold text-base text-neutral-900">Kitui Town</div>
+                                            <div class="text-sm text-neutral-600">Yellow Maize</div>
+                                        </div>
+                                        <div class="text-right">
+                                            <div class="text-lg font-bold text-primary">KES 5,000</div>
+                                            <div class="text-xs text-neutral-600">Retail: 5,400</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex gap-2 flex-wrap">
+                                        <span class="inline-flex items-center gap-1 px-2.5 py-1 bg-green-100 text-green-800 text-xs font-semibold rounded-full">
+                                            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M7 14l5-5 5 5H7z"/></svg>
+                                            Rising
+                                        </span>
+                                        <span class="px-2.5 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">High</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="border-2 border-neutral-200 rounded-xl p-4 hover:border-primary transition-all" data-variety="white">
+                            <div class="flex items-start gap-3 mb-3">
+                                <input type="checkbox" class="market-checkbox w-5 h-5 rounded border-neutral-300 text-primary focus:ring-primary mt-1"
+                                       data-market="Mwingi" data-variety="White Maize" data-price="4800" data-type="wholesale">
+                                <div class="flex-1">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <div>
+                                            <div class="font-semibold text-base text-neutral-900">Mwingi</div>
+                                            <div class="text-sm text-neutral-600">White Maize</div>
+                                        </div>
+                                        <div class="text-right">
+                                            <div class="text-lg font-bold text-primary">KES 4,800</div>
+                                            <div class="text-xs text-neutral-600">Retail: 5,200</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex gap-2 flex-wrap">
+                                        <span class="inline-flex items-center gap-1 px-2.5 py-1 bg-neutral-100 text-neutral-800 text-xs font-semibold rounded-full">
+                                            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M7 10h10v4H7v-4z"/></svg>
+                                            Stable
+                                        </span>
+                                        <span class="px-2.5 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">High</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="border-2 border-neutral-200 rounded-xl p-4 hover:border-primary transition-all" data-variety="yellow">
+                            <div class="flex items-start gap-3 mb-3">
+                                <input type="checkbox" class="market-checkbox w-5 h-5 rounded border-neutral-300 text-primary focus:ring-primary mt-1"
+                                       data-market="Mutomo" data-variety="Yellow Maize" data-price="4600" data-type="wholesale">
+                                <div class="flex-1">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <div>
+                                            <div class="font-semibold text-base text-neutral-900">Mutomo</div>
+                                            <div class="text-sm text-neutral-600">Yellow Maize</div>
+                                        </div>
+                                        <div class="text-right">
+                                            <div class="text-lg font-bold text-primary">KES 4,600</div>
+                                            <div class="text-xs text-neutral-600">Retail: 5,000</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex gap-2 flex-wrap">
+                                        <span class="inline-flex items-center gap-1 px-2.5 py-1 bg-red-100 text-red-800 text-xs font-semibold rounded-full">
+                                            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5H7z"/></svg>
+                                            Falling
+                                        </span>
+                                        <span class="px-2.5 py-1 bg-amber-100 text-amber-800 text-xs font-semibold rounded-full">Medium</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-xs text-neutral-600 mt-5 pl-1">Prices are per one standard bag. Transport and other costs are not yet included.</p>
+                </div>
+
+                <!-- Step 2: Transport & Net Section -->
+                <div id="transportSection" class="bg-gradient-to-br from-yellow-50 to-amber-50 rounded-2xl p-5 sm:p-6 mb-8 border-2 border-yellow-400/30">
+                    <div class="flex items-start gap-3 mb-5">
+                        <div class="w-10 h-10 rounded-full bg-yellow-400 flex items-center justify-center flex-shrink-0">
+                            <span class="text-white font-bold text-lg">2</span>
+                        </div>
+                        <div>
+                            <h3 class="text-lg sm:text-xl font-bold text-neutral-900 mb-1">Include transport and see net per bag (optional)</h3>
+                            <p class="text-sm text-neutral-700">Select markets above, then enter your number of bags and transport costs to see how much you keep per bag.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Selected Markets List -->
+                    <div id="selectedMarketsList" class="mb-5">
+                        <p class="text-sm text-neutral-600 italic">Select at least one market from the table above to compare after transport.</p>
+                    </div>
+                    
+                    <!-- Quantity and Transport Inputs (shown when markets selected) -->
+                    <div id="transportInputs" class="hidden space-y-5">
+                        <!-- Number of bags -->
+                        <div>
+                            <label class="block text-sm font-semibold text-neutral-700 mb-2">Number of bags you plan to sell</label>
+                            <input type="number" id="numberOfBags" min="1" value="10" 
+                                   class="w-full sm:w-48 px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all min-h-[48px]">
+                        </div>
+                        
+                        <!-- Transport costs per market -->
+                        <div id="transportCostsContainer" class="space-y-4">
+                            <!-- Dynamically filled by JavaScript -->
+                        </div>
+                        
+                        <button type="button" id="calculateBtn" class="w-full sm:w-auto bg-yellow-400 text-neutral-900 font-semibold px-8 py-3 rounded-lg hover:bg-yellow-500 transition-all shadow-sm hover:shadow-md min-h-[56px]">
+                            Calculate net per bag
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Net Results Table (hidden initially) -->
+                <div id="netResultsSection" class="hidden bg-white rounded-2xl shadow-sm p-5 sm:p-6 mb-8 border border-neutral-200">
+                    <h3 class="text-xl sm:text-2xl font-bold mb-5 text-neutral-900">Net Profit Comparison</h3>
+                    
+                    <!-- Desktop Table -->
+                    <div class="hidden lg:block overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-gradient-to-r from-yellow-50 to-yellow-100">
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-sm font-semibold text-neutral-900">Market & Variety</th>
+                                    <th class="px-4 py-3 text-right text-sm font-semibold text-neutral-900">Price per bag</th>
+                                    <th class="px-4 py-3 text-right text-sm font-semibold text-neutral-900">Transport per bag</th>
+                                    <th class="px-4 py-3 text-right text-sm font-semibold text-neutral-900">Net per bag</th>
+                                    <th class="px-4 py-3 text-right text-sm font-semibold text-neutral-900">Total net</th>
+                                    <th class="px-4 py-3 text-center text-sm font-semibold text-neutral-900">Note</th>
+                                </tr>
+                            </thead>
+                            <tbody id="netResultsTableBody" class="divide-y divide-neutral-200">
+                                <!-- Filled by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Mobile Cards -->
+                    <div class="lg:hidden space-y-3" id="netResultsCardsList">
+                        <!-- Filled by JavaScript -->
+                    </div>
+                    
+                    <p class="text-xs text-neutral-600 mt-5 pl-1">Net per bag = price per bag − your transport per bag. Total net = net per bag × number of bags. Other costs (seeds, labour, market fees) are not included.</p>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer - matches homepage -->
+    <footer class="bg-gradient-to-br from-neutral-900 to-neutral-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <!-- Brand -->
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L4 7v10c0 5.55 3.84 10.74 8 12 4.16-1.26 8-6.45 8-12V7l-8-5z"/>
+                        </svg>
+                        <span class="text-xl font-bold">FarmDecide</span>
+                    </div>
+                    <p class="text-sm text-neutral-400 leading-relaxed">Empowering Kenyan farmers with data-driven insights for better decisions.</p>
+                    <div class="flex gap-3 mt-4">
+                        <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-primary transition-all flex items-center justify-center">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-primary transition-all flex items-center justify-center">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-semibold mb-4 flex items-center gap-2">
+                        <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+                        Quick Links
+                    </h4>
+                    <ul class="space-y-2 text-sm text-neutral-400">
+                        <li><a href="index.html" class="hover:text-primary transition-colors flex items-center gap-1 group">
+                            <svg class="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+                            Home
+                        </a></li>
+                        <li><a href="where-to-sell.html" class="hover:text-primary transition-colors flex items-center gap-1 group">
+                            <svg class="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+                            Where to Sell
+                        </a></li>
+                        <li><a href="what-to-plant.html" class="hover:text-primary transition-colors flex items-center gap-1 group">
+                            <svg class="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+                            What to Plant
+                        </a></li>
+                    </ul>
+                </div>
+                
+                <!-- Support -->
+                <div>
+                    <h4 class="font-semibold mb-4 flex items-center gap-2">
+                        <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                        Support
+                    </h4>
+                    <ul class="space-y-2 text-sm text-neutral-400">
+                        <li><a href="#" class="hover:text-primary transition-colors flex items-center gap-1 group">
+                            <svg class="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+                            Help Center
+                        </a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors flex items-center gap-1 group">
+                            <svg class="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+                            FAQs
+                        </a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors flex items-center gap-1 group">
+                            <svg class="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+                            Contact Us
+                        </a></li>
+                    </ul>
+                </div>
+                
+                <!-- Data Source -->
+                <div>
+                    <h4 class="font-semibold mb-4 flex items-center gap-2">
+                        <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+                        Data Source
+                    </h4>
+                    <p class="text-sm text-neutral-400 leading-relaxed">Prices from KAMIS (Kenya Agricultural Market Information System)</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-neutral-400">
+                <p>&copy; 2025 FarmDecide. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-primary transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-primary transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/navigation.js"></script>
+    <script src="js/where-to-sell.js"></script>
+    <script>
+        function toggleDropdown(type) {
+            const menu = document.getElementById(`${type}DropdownMenu`);
+            const trigger = document.querySelector(`#${type}Dropdown .custom-dropdown-trigger`);
+            const isOpen = !menu.classList.contains('hidden');
+            
+            // Close all dropdowns first
+            closeAllDropdowns();
+            
+            if (!isOpen) {
+                menu.classList.remove('hidden');
+                trigger.setAttribute('aria-expanded', 'true');
+                
+                if (window.innerWidth <= 640) {
+                    addDropdownBackdrop(type);
+                }
+                
+                // Focus on search input
+                const searchInput = document.getElementById(`${type}Search`);
+                if (searchInput) {
+                    setTimeout(() => searchInput.focus(), 100);
+                }
+            }
+        }
+
+        function addDropdownBackdrop(type) {
+            // Remove existing backdrop if any
+            removeDropdownBackdrop();
+            
+            const backdrop = document.createElement('div');
+            backdrop.className = 'dropdown-backdrop';
+            backdrop.id = 'dropdownBackdrop';
+            backdrop.onclick = () => closeAllDropdowns();
+            document.body.appendChild(backdrop);
+            
+            // Prevent body scroll when dropdown is open
+            document.body.style.overflow = 'hidden';
+        }
+
+        function removeDropdownBackdrop() {
+            const backdrop = document.getElementById('dropdownBackdrop');
+            if (backdrop) {
+                backdrop.remove();
+            }
+            // Restore body scroll
+            document.body.style.overflow = '';
+        }
+
+        function closeAllDropdowns() {
+            const dropdowns = document.querySelectorAll('.custom-dropdown-menu');
+            const triggers = document.querySelectorAll('.custom-dropdown-trigger');
+            
+            dropdowns.forEach(dropdown => dropdown.classList.add('hidden'));
+            triggers.forEach(trigger => trigger.setAttribute('aria-expanded', 'false'));
+            
+            removeDropdownBackdrop();
+        }
+
+        document.addEventListener('click', function(event) {
+            const dropdowns = document.querySelectorAll('.custom-dropdown');
+            let clickedInsideDropdown = false;
+            
+            dropdowns.forEach(dropdown => {
+                if (dropdown.contains(event.target)) {
+                    clickedInsideDropdown = true;
+                }
+            });
+            
+            // Only close on desktop when clicking outside (mobile uses backdrop)
+            if (!clickedInsideDropdown && window.innerWidth > 640) {
+                closeAllDropdowns();
+            }
+        });
+
+        // Function to filter dropdown items (assuming this is used by the search input)
+        function filterDropdown(type) {
+            const searchInput = document.getElementById(`${type}Search`);
+            const filter = searchInput.value.toLowerCase();
+            const list = document.getElementById(`${type}List`);
+            const items = list.querySelectorAll('.dropdown-item');
+            let visibleItems = 0;
+
+            items.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(filter)) {
+                    item.style.display = '';
+                    visibleItems++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Show/hide "no results" message
+            const noResults = document.getElementById(`${type}NoResults`);
+            if (noResults) {
+                noResults.style.display = visibleItems === 0 ? '' : 'none';
+            }
+        }
+
+        // Function to select a dropdown item
+        function selectDropdownItem(type, value, dataValue) {
+            document.getElementById(`${type}Value`).textContent = value;
+            document.getElementById(`${type}Select`).value = dataValue;
+            closeAllDropdowns();
+        }
+    </script>
+</body>
+</html>
