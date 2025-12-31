@@ -696,7 +696,7 @@
     <script src="js/where-to-sell.js"></script>
     <script>
         function toggleDropdown(type) {
-            const menu = document.getElementById(`${type}DropdownMenu`);
+            const menu = document.querySelector(`#${type}DropdownMenu`);
             const trigger = document.querySelector(`#${type}Dropdown .custom-dropdown-trigger`);
             const isOpen = !menu.classList.contains('hidden');
             
@@ -710,10 +710,10 @@
                     addDropdownBackdrop(type);
                 }
                 
-                const searchInput = document.getElementById(`${type}Search`);
-                if (searchInput) {
-                    setTimeout(() => searchInput.focus(), 100);
-                }
+                // const searchInput = document.getElementById(`${type}Search`);
+                // if (searchInput) {
+                //     setTimeout(() => searchInput.focus(), 100);
+                // }
             }
         }
 
