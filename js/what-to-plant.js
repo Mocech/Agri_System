@@ -3,9 +3,6 @@
 // Track open dropdown
 let currentOpenDropdown = null
 
-// Track if user has interacted with filters (to fade out cue)
-let hasInteractedWithFilters = false
-
 /**
  * Toggle dropdown visibility
  */
@@ -469,7 +466,11 @@ function selectFilterOption(filterId, value, variety) {
   // Update displayed value
   selectedSpan.textContent = variety
 
-  // Update selected state
+  // Update hidden input
+  const hiddenInput = document.getElementById(filterId)
+  hiddenInput.value = value
+
+  // Update selected class
   dropdown.querySelectorAll(".custom-filter-option").forEach((opt) => {
     opt.classList.remove("selected")
     if (opt.dataset.value === value) {
@@ -478,39 +479,33 @@ function selectFilterOption(filterId, value, variety) {
   })
 
   // Close dropdown
-  dropdown.classList.add("hidden")
+  dropdown.classList.remove("open")
   trigger.classList.remove("open")
 
   // Remove overlay
   const overlay = document.querySelector(".custom-select-overlay")
   if (overlay) overlay.remove()
 
-  if (!hasInteractedWithFilters) {
-    hasInteractedWithFilters = true
-    const filterZoneCue = document.getElementById("filterZoneCue")
-    if (filterZoneCue && !filterZoneCue.classList.contains("hidden")) {
-      filterZoneCue.classList.add("fade-out")
-      setTimeout(() => {
-        filterZoneCue.classList.add("hidden")
-        filterZoneCue.classList.remove("fade-out")
-      }, 500)
-    }
-  }
-
-  // Update compact summary
-  updateCompactSummary()
-
   // Trigger the filter change
-  handleFilterChange(filterId, value)
+  handleFilterChange(filterId)
 }
 
 // Handle filter changes
+let crop1Changed = false
+let crop2Changed = false
+
 function handleFilterChange(filterId) {
   const crop1Filter = document.getElementById("crop1FilterSelected")
   const crop2Filter = document.getElementById("crop2FilterSelected")
 
   const crop1 = crop1Filter.textContent
   const crop2 = crop2Filter.textContent
+
+  if (filterId === "crop1Filter") {
+    crop1Changed = true
+  } else if (filterId === "crop2Filter") {
+    crop2Changed = true
+  }
 
   // Get the current county
   const county = document.getElementById("countySelected").textContent || "Nairobi"
@@ -529,6 +524,15 @@ function handleFilterChange(filterId) {
 
   // Update the comparison display
   updateComparisonDisplay(crop1Name, crop2Name, variety1Data, variety2Data)
+
+  if (crop1Changed && crop2Changed) {
+    setTimeout(() => {
+      const comparisonTable = document.getElementById("comparisonTable")
+      if (comparisonTable) {
+        comparisonTable.scrollIntoView({ behavior: "smooth", block: "start" })
+      }
+    }, 300)
+  }
 }
 
 function populateComparisonTable(crop1, crop2, variety1Data, variety2Data) {
@@ -820,94 +824,72 @@ function updateComparisonDisplay(crop1, crop2, variety1Data, variety2Data) {
   cardsContainer.innerHTML = cardsHTML
 }
 
-// Detect when filter container becomes sticky and manage UI states
-function handleFilterStickyState() {
-  if (window.innerWidth > 768) return // Only for mobile
-
-  const filterContainer = document.querySelector(".variety-filters-container")
-  const filterZoneCue = document.getElementById("filterZoneCue")
-  const compactSummary = document.getElementById("filterCompactSummary")
-  const backToFiltersBtn = document.getElementById("backToFiltersButton")
-  const comparisonTable = document.getElementById("comparisonTable")
-
-  if (!filterContainer || !comparisonTable) return
-
-  const containerRect = filterContainer.getBoundingClientRect()
-  const tableRect = comparisonTable.getBoundingClientRect()
-
-  // Check if filter is sticky (at top of viewport)
-  const isSticky = containerRect.top <= 0
-
-  // Check if user has scrolled past the comparison cards
-  const hasPastCards = tableRect.bottom < window.innerHeight
-
-  // Manage sticky state class
-  if (isSticky) {
-    filterContainer.classList.add("is-sticky")
-
-    // Show filter zone cue if user hasn't interacted yet
-    if (!hasInteractedWithFilters && filterZoneCue) {
-      filterZoneCue.classList.remove("hidden")
-    }
-
-    // Show compact summary
-    updateCompactSummary()
-  } else {
-    filterContainer.classList.remove("is-sticky")
-    if (filterZoneCue) {
-      filterZoneCue.classList.add("hidden")
-    }
-    if (compactSummary) {
-      compactSummary.classList.add("hidden")
-    }
-  }
-
-  // Show/hide back to filters button
-  if (hasPastCards && backToFiltersBtn) {
-    backToFiltersBtn.classList.remove("hidden")
-  } else if (backToFiltersBtn) {
-    backToFiltersBtn.classList.add("hidden")
-  }
-}
-
-// Update compact summary text
-function updateCompactSummary() {
-  const compactSummaryText = document.getElementById("compactSummaryText")
-  const crop1Selected = document.getElementById("crop1FilterSelected")
-  const crop2Selected = document.getElementById("crop2FilterSelected")
-  const crop1Label = document.getElementById("crop1FilterLabel")
-  const crop2Label = document.getElementById("crop2FilterLabel")
-
-  if (compactSummaryText && crop1Selected && crop2Selected) {
-    // Extract crop names from labels (first part before "Variety")
-    const crop1Name = crop1Label?.textContent.split(" Variety")[0].replace("Filter ", "").trim() || "Crop 1"
-    const crop2Name = crop2Label?.textContent.split(" Variety")[0].replace("Filter ", "").trim() || "Crop 2"
-
-    const summary = `${crop1Name}: ${crop1Selected.textContent} · ${crop2Name}: ${crop2Selected.textContent}`
-    compactSummaryText.textContent = summary
-    document.getElementById("filterCompactSummary").classList.remove("hidden")
-  }
-}
-
-// Scroll smoothly to filters and highlight them
 function scrollToFilters() {
   const filterContainer = document.querySelector(".variety-filters-container")
-  const comparisonTable = document.getElementById("comparisonTable")
 
-  if (filterContainer && comparisonTable) {
-    // Scroll to the comparison table (which contains filters)
-    comparisonTable.scrollIntoView({ behavior: "smooth", block: "start" })
+  if (filterContainer) {
+    filterContainer.scrollIntoView({ behavior: "smooth", block: "start" })
 
-    // Highlight the filters briefly after scrolling
+    filterContainer.style.transition = "background-color 0.5s ease"
+    filterContainer.style.backgroundColor = "#f0fdf4"
+
     setTimeout(() => {
-      filterContainer.classList.add("highlight")
-      setTimeout(() => {
-        filterContainer.classList.remove("highlight")
-      }, 1000)
-    }, 500)
+      filterContainer.style.backgroundColor = ""
+    }, 800)
   }
 }
 
-// Add scroll listener for mobile filter enhancements
-window.addEventListener("scroll", handleFilterStickyState)
-window.addEventListener("resize", handleFilterStickyState)
+function initCustomSelect(customSelectId, selectedValueId, optionsListId, hiddenInputId) {
+  const customSelect = document.getElementById(customSelectId)
+  const selectedValue = document.getElementById(selectedValueId)
+  const optionsList = document.getElementById(optionsListId)
+  const hiddenInput = document.getElementById(hiddenInputId)
+  const options = optionsList.querySelectorAll(".option")
+
+  // Toggle dropdown on click
+  selectedValue.addEventListener("click", (e) => {
+    e.stopPropagation()
+    // Close other custom selects
+    document.querySelectorAll(".custom-select.open").forEach((select) => {
+      if (select.id !== customSelectId) {
+        select.classList.remove("open")
+      }
+    })
+    customSelect.classList.toggle("open")
+  })
+
+  // Handle option selection
+  options.forEach((option) => {
+    option.addEventListener("click", function (e) {
+      e.stopPropagation()
+      const value = this.getAttribute("data-value")
+      const text = this.textContent
+
+      // Update selected value display
+      selectedValue.textContent = text
+
+      // Update hidden input
+      hiddenInput.value = value
+
+      // Update selected class
+      options.forEach((opt) => opt.classList.remove("selected"))
+      this.classList.add("selected")
+
+      // Close dropdown
+      customSelect.classList.remove("open")
+    })
+  })
+
+  // Close dropdown when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!customSelect.contains(e.target)) {
+      customSelect.classList.remove("open")
+    }
+  })
+}
+
+// Initialize custom select dropdowns for planting time and harvest time
+document.addEventListener("DOMContentLoaded", () => {
+  initCustomSelect("plantingTimeCustom", "plantingTimeSelected", "plantingTimeOptions", "plantingTime")
+  initCustomSelect("harvestTimeCustom", "harvestTimeSelected", "harvestTimeOptions", "harvestTime")
+})

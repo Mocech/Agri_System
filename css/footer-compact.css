@@ -1,0 +1,166 @@
+/* Compact Footer Styles for Auth Pages */
+
+footer {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border-top: 1px solid #334155;
+  padding: 2rem 1.5rem;
+  margin-top: 4rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+footer .max-w-7xl {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Main footer content layout */
+footer .flex {
+  display: flex;
+}
+
+footer .flex-col {
+  flex-direction: column;
+}
+
+footer .md\:flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+footer .justify-between {
+  justify-content: space-between;
+}
+
+footer .justify-center {
+  justify-content: center;
+}
+
+footer .items-center {
+  align-items: center;
+}
+
+footer .gap-6 {
+  gap: 1.5rem;
+}
+
+footer .gap-4 {
+  gap: 1rem;
+}
+
+footer .flex-wrap {
+  flex-wrap: wrap;
+}
+
+/* Copyright and text styling */
+footer .text-gray-400 {
+  color: #9ca3af;
+  font-size: 0.875rem;
+}
+
+footer .text-gray-500 {
+  color: #6b7280;
+  font-size: 0.75rem;
+}
+
+footer .text-gray-600 {
+  color: #4b5563;
+}
+
+footer .text-gray-300 {
+  color: #d1d5db;
+  font-size: 0.875rem;
+}
+
+footer .text-green-400 {
+  color: #22c55e;
+  font-weight: 600;
+}
+
+/* Link styling */
+footer .footer-link {
+  position: relative;
+  display: inline-block;
+  color: #d1d5db;
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.3s ease;
+}
+
+footer .footer-link:hover {
+  color: #22c55e;
+}
+
+/* Smooth gradient underline animation on hover */
+footer .footer-link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #22c55e, #fbbf24);
+  transition: width 0.3s ease;
+}
+
+footer .footer-link:hover::after {
+  width: 100%;
+}
+
+/* Divider styling */
+footer .border-t {
+  border-top: 1px solid #334155;
+}
+
+footer .mt-6 {
+  margin-top: 1.5rem;
+}
+
+footer .pt-6 {
+  padding-top: 1.5rem;
+}
+
+footer .mt-16 {
+  margin-top: 4rem;
+}
+
+footer .text-center {
+  text-align: center;
+}
+
+footer .text-xs {
+  font-size: 0.75rem;
+}
+
+footer .whitespace-nowrap {
+  white-space: nowrap;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+  footer {
+    padding: 1.5rem 1rem;
+    margin-top: 2rem;
+  }
+
+  footer .md\:text-left,
+  footer .md\:text-right,
+  footer .md\:block {
+    display: none;
+  }
+
+  footer .text-gray-300,
+  footer .footer-link {
+    font-size: 0.8125rem;
+  }
+
+  footer .flex.md\:flex-row {
+    flex-direction: column;
+  }
+}
+
+/* Bullet separator styling */
+footer .text-gray-600 {
+  margin: 0 0.25rem;
+  opacity: 0.6;
+}

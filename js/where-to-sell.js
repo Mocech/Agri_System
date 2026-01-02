@@ -657,13 +657,7 @@ function capitalizeFirst(str) {
   return str.charAt(0).toUpperCase() + str.slice(1)
 }
 
-// Mobile menu toggle
-function toggleMobileMenu() {
-  const mobileMenu = document.getElementById("mobileMenu")
-  if (mobileMenu) {
-    mobileMenu.classList.toggle("hidden")
-  }
-}
+
 
 // Toggle custom dropdown visibility
 function toggleDropdown(type) {

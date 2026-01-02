@@ -2,11 +2,20 @@
    HOME PAGE SPECIFIC STYLES
    ============================================ */
 
+
+/* Fixed hero z-index to not overlap navbar */
 /* Enhanced Hero for Home */
 .home-hero {
   min-height: 70vh;
   position: relative;
   overflow: hidden;
+  /* Explicitly set z-index below navbar */
+  z-index: 0;
+}
+
+/* Override hero-overlay for home page specifically */
+.hero-overlay.home-hero {
+  z-index: 0;
 }
 
 /* Hero background image styling for backend integration */
@@ -31,7 +40,9 @@
   height: 100%;
   background: linear-gradient(135deg, rgba(20, 83, 45, 0.65) 0%, rgba(5, 46, 22, 0.75) 100%);
   z-index: 1;
+  pointer-events: none;
 }
+
 
 @media (max-width: 768px) {
   .home-hero {
@@ -93,6 +104,7 @@
 .cta-action-item.yellow-accent:hover {
   border-color: var(--color-accent-yellow);
 }
+
 
 /* Redesigned Services Section - Non-Card Layout */
 .services-grid {

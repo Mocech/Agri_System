@@ -950,6 +950,132 @@ button:active {
 }
 /* End custom filter dropdown styles */
 
+/* Adding custom select dropdown styles for When to Plant and When to Harvest fields */
+/* Custom Select Dropdown for Planting Time and Harvest Time */
+.custom-select {
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+}
+
+.custom-select .selected-value {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 1rem;
+  color: #0f172a;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+}
+
+.custom-select .selected-value:hover {
+  border-color: var(--color-primary);
+  background-color: #f0fdf4;
+}
+
+.custom-select.open .selected-value {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.1);
+}
+
+.custom-select .dropdown-arrow {
+  color: var(--color-primary);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  margin-left: 0.5rem;
+}
+
+.custom-select.open .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.custom-select .options-list {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: white;
+  border: 2px solid var(--color-primary);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  max-height: 280px;
+  overflow-y: auto;
+  padding: 0.5rem;
+  display: none;
+  animation: slideDown 0.3s ease-out;
+}
+
+.custom-select.open .options-list {
+  display: block;
+}
+
+.custom-select .option {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  color: #475569;
+  font-weight: 500;
+  font-size: 0.9375rem;
+}
+
+.custom-select .option:hover {
+  background: #f0fdf4;
+  color: var(--color-primary-dark);
+  transform: translateX(4px);
+}
+
+.custom-select .option.selected {
+  background: #dcfce7;
+  color: #166534;
+  font-weight: 600;
+}
+
+.custom-select .option.selected:hover {
+  background: #bbf7d0;
+  transform: translateX(0);
+}
+
+/* Scrollbar for custom select options */
+.custom-select .options-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-select .options-list::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.custom-select .options-list::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 4px;
+}
+
+.custom-select .options-list::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-dark);
+}
+
+/* Mobile responsive for custom select */
+@media (max-width: 640px) {
+  .custom-select .options-list {
+    max-height: 240px;
+  }
+
+  .custom-select .option {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.875rem;
+  }
+}
+/* End custom select styles for planting/harvest time */
+
 /* Variety Filter Dropdown Custom Styles */
 #crop1VarietyFilter,
 #crop2VarietyFilter {
@@ -1012,17 +1138,9 @@ select#crop2VarietyFilter:focus option:checked {
 /* Making variety filters sticky on mobile only */
 @media (max-width: 768px) {
   .variety-filters-container {
-    position: sticky;
-    top: 0;
-    background: white;
-    z-index: 100;
+    /* Removed sticky positioning */
     padding: 1rem;
-    margin: -1rem -1rem 1.5rem -1rem;
-    border-bottom: 2px solid #e5e7eb;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-    transition: all 0.3s ease;
-    /* Allow touch events to pass through when not interacting with filters */
-    pointer-events: auto;
+    margin-bottom: 1.5rem;
   }
 
   /* Ensure comparison table container allows scrolling */
@@ -1042,161 +1160,51 @@ select#crop2VarietyFilter:focus option:checked {
   .comparison-table-wrapper,
   .table-wrapper {
     overflow: visible !important;
-    height: auto !important;
-  }
-} /* Closing brace added here */
-
-/* Adding complete mobile filter enhancement styles */
-/* Filter zone cue - subtle label when sticky */
-.filter-zone-cue {
-  background: linear-gradient(135deg, #dcfce7, #bbf7d0);
-  padding: 0.5rem 1rem;
-  text-align: center;
-  border-bottom: 1px solid #86efac;
-  margin-bottom: 0.75rem;
-  border-radius: 8px;
-  animation: slideIn 0.3s ease;
-}
-
-.filter-zone-cue.fade-out {
-  animation: fadeOut 0.5s ease forwards;
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
 
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-/* Compact summary when sticky */
-.filter-compact-summary {
-  background: #f0fdf4;
-  padding: 0.625rem 1rem;
-  text-align: center;
-  border: 1px solid #86efac;
-  border-radius: 8px;
-  margin-bottom: 0.75rem;
-}
-
-.filter-compact-summary #compactSummaryText {
-  color: #166534;
-  font-weight: 600;
-  font-size: 0.875rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-/* Hide full filter view when showing compact summary */
-.variety-filters-container.is-sticky .filter-compact-summary {
-  display: block;
-}
-
-.variety-filters-container.is-sticky #filterFullView {
-  display: none;
-}
-
-.variety-filters-container:not(.is-sticky) .filter-compact-summary {
-  display: none;
-}
-
-.variety-filters-container:not(.is-sticky) #filterFullView {
-  display: grid;
-}
-
-/* Back to filters floating button */
+/* Floating "Change varieties" Button */
 .back-to-filters-button {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  background: linear-gradient(135deg, var(--color-primary), #16a34a);
-  color: white;
-  padding: 0.75rem 1.25rem;
-  border-radius: 9999px;
-  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
-  font-weight: 600;
-  font-size: 0.875rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  cursor: pointer;
+  padding: 0.875rem 1.5rem;
+  background: linear-gradient(135deg, var(--color-primary), #16a34a);
+  color: white;
+  font-weight: 600;
+  font-size: 0.9375rem;
   border: none;
-  z-index: 999;
+  border-radius: 9999px;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+  cursor: pointer;
   transition: all 0.3s ease;
-  animation: slideUp 0.3s ease;
+  z-index: 900;
 }
 
 .back-to-filters-button:hover {
-  background: linear-gradient(135deg, #16a34a, var(--color-primary));
+  background: linear-gradient(135deg, #16a34a, var(--color-primary-dark));
+  box-shadow: 0 6px 20px rgba(34, 197, 94, 0.4);
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(34, 197, 94, 0.5);
 }
 
 .back-to-filters-button:active {
   transform: translateY(0);
 }
 
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.back-to-filters-button svg {
+  flex-shrink: 0;
 }
 
-/* Highlight animation for filters */
-.variety-filters-container.highlight {
-  animation: highlightPulse 1s ease;
-}
-
-@keyframes highlightPulse {
-  0%,
-  100% {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  }
-  50% {
-    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.3), 0 2px 8px rgba(0, 0, 0, 0.06);
-  }
-}
-
-/* Mobile-specific adjustments */
+/* Mobile responsive for floating button */
 @media (max-width: 768px) {
   .back-to-filters-button {
     bottom: 1.5rem;
     right: 1.5rem;
-    padding: 0.625rem 1rem;
-    font-size: 0.8125rem;
-  }
-
-  .filter-zone-cue {
-    padding: 0.375rem 0.75rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .filter-compact-summary {
-    padding: 0.5rem 0.75rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .filter-compact-summary #compactSummaryText {
-    font-size: 0.8125rem;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.875rem;
   }
 }
 
@@ -1204,12 +1212,13 @@ select#crop2VarietyFilter:focus option:checked {
   .back-to-filters-button {
     bottom: 1rem;
     right: 1rem;
-    padding: 0.5rem 0.875rem;
-    font-size: 0.75rem;
+    padding: 0.625rem 1rem;
+    font-size: 0.8125rem;
+    gap: 0.375rem;
   }
 
   .back-to-filters-button svg {
-    width: 0.875rem;
-    height: 0.875rem;
+    width: 1rem;
+    height: 1rem;
   }
 }
