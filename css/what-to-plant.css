@@ -1,124 +1,1215 @@
 /* ============================================
-   WHAT TO PLANT PAGE SPECIFIC STYLES
+   WHAT TO PLANT - CUSTOM SELECT DROPDOWNS
    ============================================ */
 
-/* Hero Section for What to Plant */
+/* Custom Select Wrapper */
+.custom-select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* Custom Select Trigger Button */
+.custom-select-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 1rem;
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 1rem;
+  color: #0f172a;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.custom-select-trigger:hover {
+  border-color: var(--color-primary);
+  background-color: #f0fdf4;
+}
+
+.custom-select-trigger:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.1);
+}
+
+.custom-select-value {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.custom-select-trigger .custom-select-value {
+  color: #94a3b8;
+}
+
+.custom-select-trigger.has-value .custom-select-value {
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.custom-select-arrow {
+  width: 20px;
+  height: 20px;
+  color: var(--color-primary);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  margin-left: 0.5rem;
+}
+
+.custom-select-trigger.open .custom-select-arrow {
+  transform: rotate(180deg);
+}
+
+/* Custom Select Dropdown */
+.custom-select-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: white;
+  border: 2px solid var(--color-primary);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  max-height: 380px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Search Section */
+.custom-select-search {
+  padding: 1rem;
+  border-bottom: 2px solid #f0fdf4;
+  background: linear-gradient(to bottom, #f0fdf4, white);
+  flex-shrink: 0;
+}
+
+.custom-select-search {
+  position: relative;
+}
+
+.custom-select-search .search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  color: var(--color-primary);
+  pointer-events: none;
+}
+
+.custom-select-search-input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.75rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  color: #0f172a;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.custom-select-search-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background-color: white;
+}
+
+.custom-select-search-input::placeholder {
+  color: #94a3b8;
+}
+
+/* Options List */
+.custom-select-options {
+  overflow-y: auto;
+  max-height: 280px;
+  padding: 0.5rem;
+}
+
+.custom-select-option {
+  padding: 0.875rem 1rem;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  color: #475569;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.custom-select-option:hover {
+  background: #f0fdf4;
+  color: var(--color-primary-dark);
+  transform: translateX(4px);
+}
+
+.custom-select-option.selected {
+  background: linear-gradient(135deg, var(--color-primary), #16a34a);
+  color: white;
+  font-weight: 600;
+}
+
+.custom-select-option.selected:hover {
+  background: linear-gradient(135deg, #16a34a, var(--color-primary));
+  transform: translateX(0);
+}
+
+.custom-select-option.hidden {
+  display: none;
+}
+
+/* Scrollbar Styling for Dropdown */
+.custom-select-options::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-select-options::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.custom-select-options::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 4px;
+}
+
+.custom-select-options::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-dark);
+}
+
+/* Mobile Responsive */
+@media (max-width: 640px) {
+  .custom-select-dropdown {
+    max-height: 320px;
+  }
+
+  .custom-select-options {
+    max-height: 220px;
+  }
+
+  .custom-select-option {
+    padding: 0.75rem 0.875rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Overlay for dropdown (closes on click outside) */
+.custom-select-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: transparent;
+}
+
+/* Adding hero overlay styles like homepage */
+
+/* Hero Section with Overlay */
 .plant-hero {
-  min-height: 50vh;
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(30, 41, 59, 0.88)),
-    url("/placeholder.svg?height=800&width=1600");
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  min-height: 60vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hero background image styling */
+.plant-hero .hero-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+}
+
+/* Gradient overlay matching homepage */
+.plant-hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(20, 83, 45, 0.85) 0%, rgba(5, 46, 22, 0.9) 100%);
+  z-index: 1;
 }
 
 @media (max-width: 768px) {
   .plant-hero {
-    min-height: 45vh;
-    background-attachment: scroll;
+    min-height: 50vh;
   }
 }
 
-/* Crop Ranking Cards */
-.crop-rank-card {
-  background: white;
+/* Results section styles */
+.variety-card {
+  border: 2px solid #e5e7eb;
   border-radius: 12px;
-  padding: 1.5rem;
-  border-left: 4px solid var(--color-primary);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  padding: 1rem;
   transition: all 0.3s ease;
-}
-
-.crop-rank-card:hover {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  transform: translateX(4px);
-}
-
-.crop-rank-number {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--color-primary) 0%, #16a34a 100%);
-  color: white;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.25rem;
-}
-
-/* Income Estimator with Yellow Accent */
-.income-estimator {
-  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-  border-radius: 16px;
-  padding: 2rem;
-  border: 2px solid #fcd34d;
-}
-
-.estimated-income {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #92400e;
-}
-
-/* Growing Period Timeline */
-.timeline-item {
-  position: relative;
-  padding-left: 2rem;
-  padding-bottom: 1.5rem;
-}
-
-.timeline-item::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--color-primary);
-  border: 3px solid white;
-  box-shadow: 0 0 0 2px var(--color-primary);
-}
-
-.timeline-item::after {
-  content: "";
-  position: absolute;
-  left: 5px;
-  top: 12px;
-  width: 2px;
-  height: calc(100% - 12px);
-  background: #e5e7eb;
-}
-
-.timeline-item:last-child::after {
-  display: none;
-}
-
-/* Crop Comparison Table */
-.comparison-table {
   background: white;
+}
+
+.variety-card:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.1);
+  transform: translateY(-2px);
+}
+
+.variety-card.best-variety {
+  border-color: var(--color-primary);
+  background: linear-gradient(to bottom, #f0fdf4, white);
+  position: relative;
+}
+
+.variety-card.best-variety::before {
+  content: "BEST OPTION";
+  position: absolute;
+  top: -10px;
+  right: 12px;
+  background: linear-gradient(135deg, var(--color-primary), #16a34a);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 4px 12px;
   border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  letter-spacing: 0.5px;
 }
 
-.comparison-table thead {
-  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+.trend-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
 }
 
-/* Risk Level Badges */
-.risk-low {
+.trend-rising {
   background: #dcfce7;
   color: #166534;
 }
 
-.risk-medium {
+.trend-stable {
   background: #fef3c7;
   color: #92400e;
 }
 
-.risk-high {
+.trend-falling {
   background: #fee2e2;
   color: #991b1b;
+}
+
+.confidence-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.confidence-high {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.confidence-medium {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.confidence-low {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.income-card {
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1rem;
+  background: linear-gradient(to bottom, #f9fafb, white);
+}
+
+@media (max-width: 640px) {
+  .variety-card {
+    padding: 0.875rem;
+  }
+
+  .variety-card.best-variety::before {
+    font-size: 0.6rem;
+    padding: 3px 10px;
+  }
+}
+
+/* Added responsive table styles for results section */
+
+/* Updated results section styles to match provided design with clean table layout */
+
+/* Results Section Table Styles */
+#crop1Table,
+#crop2Table {
+  font-size: 0.9375rem;
+}
+
+#crop1Table thead,
+#crop2Table thead {
+  background-color: #f9fafb;
+}
+
+#crop1Table th,
+#crop2Table th {
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+
+#crop1Table tbody tr,
+#crop2Table tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+#crop1Table tbody tr:hover,
+#crop2Table tbody tr:hover {
+  background-color: #f0fdf4;
+}
+
+/* Market and Variety cells */
+.market-cell {
+  font-weight: 700;
+  color: #0f172a;
+  font-size: 1rem;
+}
+
+/* Variety cells */
+.variety-cell {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* Price cells */
+.wholesale-cell {
+  font-weight: 700;
+  color: #0f172a;
+  font-size: 1rem;
+}
+
+.retail-cell {
+  color: #0f172a;
+  font-weight: 600;
+}
+
+/* Trend badges matching the design */
+.trend-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.trend-rising {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.trend-stable {
+  background-color: #f3f4f6;
+  color: #4b5563;
+}
+
+.trend-falling {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.trend-icon {
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+/* Confidence badges matching the design */
+.confidence-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.confidence-high {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.confidence-medium {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.confidence-low {
+  background-color: #f3f4f6;
+  color: #4b5563;
+}
+
+/* Income Preview Table */
+.income-variety-cell {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.income-price-cell {
+  color: #64748b;
+  font-weight: 500;
+}
+
+.income-bags-cell {
+  color: #64748b;
+  font-weight: 500;
+}
+
+.income-total-cell {
+  font-weight: 700;
+  color: #22c55e;
+  font-size: 1.125rem;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  #crop1Table,
+  #crop2Table {
+    font-size: 0.875rem;
+  }
+
+  .market-cell,
+  .wholesale-cell {
+    font-size: 0.9375rem;
+  }
+
+  .trend-badge,
+  .confidence-badge {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.7rem;
+  }
+
+  .income-total-cell {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  #crop1Table,
+  #crop2Table {
+    font-size: 0.8125rem;
+  }
+
+  .market-cell,
+  .wholesale-cell {
+    font-size: 0.875rem;
+  }
+
+  .trend-badge,
+  .confidence-badge {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.6rem;
+    gap: 0.25rem;
+  }
+
+  .trend-icon {
+    font-size: 0.75rem;
+  }
+}
+
+/* Horizontal scroll hint on mobile */
+@media (max-width: 768px) {
+  .overflow-x-auto::after {
+    content: "← Scroll →";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: rgba(34, 197, 94, 0.9);
+    color: white;
+    font-size: 0.65rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px 0 0 0;
+    font-weight: 600;
+    animation: fadeOut 3s forwards;
+  }
+
+  @keyframes fadeOut {
+    0%,
+    70% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+}
+
+/* Load More button hover effect */
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* Added mobile card styles for responsive design */
+
+/* Comparison Table Mobile Cards */
+.comparison-mobile-card {
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1rem;
+  background: white;
+  transition: all 0.2s ease;
+}
+
+.comparison-mobile-card:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.1);
+}
+
+.comparison-mobile-card.best-option {
+  border-color: var(--color-primary);
+  background: linear-gradient(to bottom, #f0fdf4, white);
+}
+
+.best-badge {
+  background: linear-gradient(135deg, var(--color-primary), #16a34a);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 12px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+/* Variety Table Mobile Cards */
+.variety-mobile-card {
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1rem;
+  background: white;
+  transition: all 0.2s ease;
+}
+
+.variety-mobile-card:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.1);
+}
+
+.variety-mobile-card.best-option {
+  border-color: var(--color-primary);
+  background: linear-gradient(to bottom, #f0fdf4, white);
+}
+
+.variety-mobile-card.highlighted-option {
+  border-color: #eab308;
+  background: linear-gradient(to bottom, #fef9c3, white);
+}
+
+.highlighted-badge {
+  background: linear-gradient(135deg, #eab308, #ca8a04);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 12px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .variety-mobile-card,
+  .comparison-mobile-card {
+    padding: 0.875rem;
+  }
+
+  .trend-badge,
+  .confidence-badge {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.7rem;
+  }
+
+  .best-badge,
+  .highlighted-badge {
+    font-size: 0.6rem;
+    padding: 3px 8px;
+  }
+}
+
+@media (max-width: 640px) {
+  .variety-mobile-card,
+  .comparison-mobile-card {
+    padding: 0.75rem;
+  }
+
+  .trend-badge,
+  .confidence-badge {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.6rem;
+    gap: 0.25rem;
+  }
+
+  .trend-icon {
+    font-size: 0.75rem;
+  }
+}
+
+/* Added info card styles for the new info section */
+
+/* Info Section Cards */
+.info-card {
+  background: linear-gradient(to bottom, #f0fdf4, white);
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.25rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.info-card:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Primary info card (Best crops now) - stronger tint */
+.info-card-primary {
+  background: linear-gradient(to bottom, #dcfce7, #f0fdf4);
+  border-color: #86efac;
+}
+
+.info-card-primary:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 6px 16px rgba(34, 197, 94, 0.15);
+}
+
+/* Info card icon container */
+.info-card-icon {
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: white;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  box-shadow: 0 2px 6px rgba(34, 197, 94, 0.15);
+}
+
+/* Info card title */
+.info-card-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+  text-transform: capitalize;
+}
+
+/* Info card text */
+.info-card-text {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #475569;
+  font-weight: 500;
+}
+
+/* Mobile responsive styles for info cards */
+@media (max-width: 1024px) {
+  .info-card {
+    padding: 1rem;
+  }
+
+  .info-card-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .info-card-icon svg {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+
+  .info-card-title {
+    font-size: 0.8125rem;
+  }
+
+  .info-card-text {
+    font-size: 0.8125rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .info-card {
+    padding: 0.875rem;
+  }
+
+  .info-card-icon {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .info-card-icon svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .info-card-title {
+    font-size: 0.75rem;
+    margin-bottom: 0.375rem;
+  }
+
+  .info-card-text {
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+
+  /* Increase vertical spacing on mobile for better separation */
+  .info-card {
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Added styles for collapsible results section */
+
+/* Adding custom filter dropdown styles to replace standard select with green-themed dropdowns */
+/* Custom Filter Dropdown Wrapper (for variety filters in comparison section) */
+.custom-select-wrapper-filter {
+  position: relative;
+  width: 100%;
+}
+
+/* Custom Filter Trigger Button */
+.custom-filter-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: white;
+  border: 2px solid #d1d5db;
+  border-radius: 12px;
+  font-size: 0.9375rem;
+  color: #0f172a;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.custom-filter-trigger:hover {
+  border-color: var(--color-primary);
+  background-color: #f0fdf4;
+}
+
+.custom-filter-trigger:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.1);
+}
+
+.custom-filter-value {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.custom-filter-trigger .custom-select-arrow {
+  width: 20px;
+  height: 20px;
+  color: var(--color-primary);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  margin-left: 0.5rem;
+}
+
+.custom-filter-trigger.open .custom-select-arrow {
+  transform: rotate(180deg);
+}
+
+/* Custom Filter Dropdown */
+.custom-filter-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: white;
+  border: 2px solid var(--color-primary);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  max-height: 280px;
+  overflow: hidden;
+  animation: slideDown 0.3s ease-out;
+}
+
+/* Filter Options List */
+.custom-filter-options {
+  overflow-y: auto;
+  max-height: 280px;
+  padding: 0.5rem;
+}
+
+.custom-filter-option {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  color: #475569;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.custom-filter-option:hover {
+  background: #f0fdf4;
+  color: var(--color-primary-dark);
+  transform: translateX(4px);
+}
+
+.custom-filter-option.selected {
+  background: #dcfce7;
+  color: #166534;
+  font-weight: 600;
+}
+
+.custom-filter-option.selected:hover {
+  background: #bbf7d0;
+  transform: translateX(0);
+}
+
+/* Scrollbar Styling for Filter Dropdown */
+.custom-filter-options::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-filter-options::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.custom-filter-options::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 4px;
+}
+
+.custom-filter-options::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-dark);
+}
+
+/* Mobile Responsive for Filter Dropdowns */
+@media (max-width: 640px) {
+  .custom-filter-dropdown {
+    max-height: 240px;
+  }
+
+  .custom-filter-options {
+    max-height: 240px;
+  }
+
+  .custom-filter-option {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.875rem;
+  }
+}
+/* End custom filter dropdown styles */
+
+/* Variety Filter Dropdown Custom Styles */
+#crop1VarietyFilter,
+#crop2VarietyFilter {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2322c55e'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1.25rem;
+  padding-right: 2.75rem;
+}
+
+#crop1VarietyFilter:hover,
+#crop2VarietyFilter:hover {
+  background-color: #f0fdf4;
+}
+
+#crop1VarietyFilter:focus,
+#crop2VarietyFilter:focus {
+  background-color: white;
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.1);
+}
+
+/* Override default blue selection to green */
+#crop1VarietyFilter option,
+#crop2VarietyFilter option {
+  background: white;
+  color: #0f172a;
+  padding: 0.75rem 1rem;
+}
+
+/* Firefox - style selected and hovered options */
+#crop1VarietyFilter option:checked,
+#crop2VarietyFilter option:checked {
+  background: linear-gradient(0deg, #dcfce7 0%, #dcfce7 100%);
+  color: #166534;
+  font-weight: 600;
+}
+
+#crop1VarietyFilter option:hover,
+#crop2VarietyFilter option:hover {
+  background: #f0fdf4 !important;
+  color: #166534 !important;
+}
+
+/* Chrome/Edge/Safari - style selected option */
+select#crop1VarietyFilter:focus option:checked,
+select#crop2VarietyFilter:focus option:checked {
+  background: #dcfce7;
+  color: #166534;
+}
+
+/* Webkit-specific styling for dropdown */
+#crop1VarietyFilter option::selection,
+#crop2VarietyFilter option::selection {
+  background: #dcfce7;
+  color: #166534;
+}
+
+/* Mobile responsive adjustments for filters */
+/* Making variety filters sticky on mobile only */
+@media (max-width: 768px) {
+  .variety-filters-container {
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 100;
+    padding: 1rem;
+    margin: -1rem -1rem 1.5rem -1rem;
+    border-bottom: 2px solid #e5e7eb;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    /* Allow touch events to pass through when not interacting with filters */
+    pointer-events: auto;
+  }
+
+  /* Ensure comparison table container allows scrolling */
+  #comparisonTable {
+    overflow: visible !important;
+    position: relative;
+  }
+
+  /* Ensure cards are scrollable */
+  #comparisonCards {
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+  }
+
+  /* Ensure table wrapper doesn't block scroll */
+  .comparison-table-wrapper,
+  .table-wrapper {
+    overflow: visible !important;
+    height: auto !important;
+  }
+} /* Closing brace added here */
+
+/* Adding complete mobile filter enhancement styles */
+/* Filter zone cue - subtle label when sticky */
+.filter-zone-cue {
+  background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+  padding: 0.5rem 1rem;
+  text-align: center;
+  border-bottom: 1px solid #86efac;
+  margin-bottom: 0.75rem;
+  border-radius: 8px;
+  animation: slideIn 0.3s ease;
+}
+
+.filter-zone-cue.fade-out {
+  animation: fadeOut 0.5s ease forwards;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Compact summary when sticky */
+.filter-compact-summary {
+  background: #f0fdf4;
+  padding: 0.625rem 1rem;
+  text-align: center;
+  border: 1px solid #86efac;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+}
+
+.filter-compact-summary #compactSummaryText {
+  color: #166534;
+  font-weight: 600;
+  font-size: 0.875rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Hide full filter view when showing compact summary */
+.variety-filters-container.is-sticky .filter-compact-summary {
+  display: block;
+}
+
+.variety-filters-container.is-sticky #filterFullView {
+  display: none;
+}
+
+.variety-filters-container:not(.is-sticky) .filter-compact-summary {
+  display: none;
+}
+
+.variety-filters-container:not(.is-sticky) #filterFullView {
+  display: grid;
+}
+
+/* Back to filters floating button */
+.back-to-filters-button {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: linear-gradient(135deg, var(--color-primary), #16a34a);
+  color: white;
+  padding: 0.75rem 1.25rem;
+  border-radius: 9999px;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
+  font-weight: 600;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  border: none;
+  z-index: 999;
+  transition: all 0.3s ease;
+  animation: slideUp 0.3s ease;
+}
+
+.back-to-filters-button:hover {
+  background: linear-gradient(135deg, #16a34a, var(--color-primary));
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(34, 197, 94, 0.5);
+}
+
+.back-to-filters-button:active {
+  transform: translateY(0);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Highlight animation for filters */
+.variety-filters-container.highlight {
+  animation: highlightPulse 1s ease;
+}
+
+@keyframes highlightPulse {
+  0%,
+  100% {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.3), 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+  .back-to-filters-button {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    padding: 0.625rem 1rem;
+    font-size: 0.8125rem;
+  }
+
+  .filter-zone-cue {
+    padding: 0.375rem 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .filter-compact-summary {
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .filter-compact-summary #compactSummaryText {
+    font-size: 0.8125rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .back-to-filters-button {
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.5rem 0.875rem;
+    font-size: 0.75rem;
+  }
+
+  .back-to-filters-button svg {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
 }

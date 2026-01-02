@@ -3,116 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FarmDecide Kenya - Smart Farming Decisions</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="js/tailwind-config.js"></script>
+    <title>FarmDecide Kenya - Data-Driven Farming Decisions</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/home.css">
+    <!-- Added account promo CSS -->
+    <link rel="stylesheet" href="css/account-promo.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/tailwind-config.js"></script>
 </head>
 <body class="bg-stone-50">
     
-    <!-- County Selection Popup -->
-    <div id="countyPopup" class="county-popup-overlay hidden">
-        <div class="county-popup">
-            <!-- Close button -->
-            <button class="county-popup-close" onclick="closeCountyPopup()">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                </svg>
-            </button>
-            <div class="county-popup-header">
-                <div class="county-popup-icon">
-                    <svg fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                    </svg>
-                </div>
-                <h2>Select Your County</h2>
-                <p>Choose your location for personalized data</p>
-            </div>
-            <div class="county-popup-body">
-                <!-- Real-time searchable county input -->
-                <div class="county-search-wrapper">
-                    <label for="countySearchInput" class="county-search-label">
-                        <svg class="county-search-icon" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                        </svg>
-                        <span>Search County</span>
-                    </label>
-                    <div class="county-search-input-wrapper">
-                        <svg class="county-search-input-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                        </svg>
-                        <input 
-                            type="text" 
-                            id="countySearchInput" 
-                            class="county-search-input" 
-                            placeholder="Type to search counties..."
-                            oninput="filterCounties()"
-                            autocomplete="off"
-                        />
-                    </div>
-                </div>
+    <!-- Account Promo Popup - Optimized -->
+<div id="accountPromoPopup" class="account-promo-overlay hidden">
+  <div class="account-promo-modal">
+    <button class="account-promo-close" onclick="continueAsGuest()" aria-label="Close popup">
+      ✕
+    </button>
 
-                <!-- County list -->
-                <div class="county-list" id="countyList">
-                    <div class="county-item" onclick="selectCounty('Baringo')">Baringo</div>
-                    <div class="county-item" onclick="selectCounty('Bomet')">Bomet</div>
-                    <div class="county-item" onclick="selectCounty('Bungoma')">Bungoma</div>
-                    <div class="county-item" onclick="selectCounty('Busia')">Busia</div>
-                    <div class="county-item" onclick="selectCounty('Elgeyo-Marakwet')">Elgeyo-Marakwet</div>
-                    <div class="county-item" onclick="selectCounty('Embu')">Embu</div>
-                    <div class="county-item" onclick="selectCounty('Garissa')">Garissa</div>
-                    <div class="county-item" onclick="selectCounty('Homa Bay')">Homa Bay</div>
-                    <div class="county-item" onclick="selectCounty('Isiolo')">Isiolo</div>
-                    <div class="county-item" onclick="selectCounty('Kajiado')">Kajiado</div>
-                    <div class="county-item" onclick="selectCounty('Kakamega')">Kakamega</div>
-                    <div class="county-item" onclick="selectCounty('Kericho')">Kericho</div>
-                    <div class="county-item" onclick="selectCounty('Kiambu')">Kiambu</div>
-                    <div class="county-item" onclick="selectCounty('Kilifi')">Kilifi</div>
-                    <div class="county-item" onclick="selectCounty('Kirinyaga')">Kirinyaga</div>
-                    <div class="county-item" onclick="selectCounty('Kisii')">Kisii</div>
-                    <div class="county-item" onclick="selectCounty('Kisumu')">Kisumu</div>
-                    <div class="county-item" onclick="selectCounty('Kitui')">Kitui</div>
-                    <div class="county-item" onclick="selectCounty('Kwale')">Kwale</div>
-                    <div class="county-item" onclick="selectCounty('Laikipia')">Laikipia</div>
-                    <div class="county-item" onclick="selectCounty('Lamu')">Lamu</div>
-                    <div class="county-item" onclick="selectCounty('Machakos')">Machakos</div>
-                    <div class="county-item" onclick="selectCounty('Makueni')">Makueni</div>
-                    <div class="county-item" onclick="selectCounty('Mandera')">Mandera</div>
-                    <div class="county-item" onclick="selectCounty('Marsabit')">Marsabit</div>
-                    <div class="county-item" onclick="selectCounty('Meru')">Meru</div>
-                    <div class="county-item" onclick="selectCounty('Migori')">Migori</div>
-                    <div class="county-item" onclick="selectCounty('Mombasa')">Mombasa</div>
-                    <div class="county-item" onclick="selectCounty('Murang\'a')">Murang'a</div>
-                    <div class="county-item" onclick="selectCounty('Nairobi')">Nairobi</div>
-                    <div class="county-item" onclick="selectCounty('Nakuru')">Nakuru</div>
-                    <div class="county-item" onclick="selectCounty('Nandi')">Nandi</div>
-                    <div class="county-item" onclick="selectCounty('Narok')">Narok</div>
-                    <div class="county-item" onclick="selectCounty('Nyamira')">Nyamira</div>
-                    <div class="county-item" onclick="selectCounty('Nyandarua')">Nyandarua</div>
-                    <div class="county-item" onclick="selectCounty('Nyeri')">Nyeri</div>
-                    <div class="county-item" onclick="selectCounty('Samburu')">Samburu</div>
-                    <div class="county-item" onclick="selectCounty('Siaya')">Siaya</div>
-                    <div class="county-item" onclick="selectCounty('Taita-Taveta')">Taita-Taveta</div>
-                    <div class="county-item" onclick="selectCounty('Tana River')">Tana River</div>
-                    <div class="county-item" onclick="selectCounty('Tharaka-Nithi')">Tharaka-Nithi</div>
-                    <div class="county-item" onclick="selectCounty('Trans Nzoia')">Trans Nzoia</div>
-                    <div class="county-item" onclick="selectCounty('Turkana')">Turkana</div>
-                    <div class="county-item" onclick="selectCounty('Uasin Gishu')">Uasin Gishu</div>
-                    <div class="county-item" onclick="selectCounty('Vihiga')">Vihiga</div>
-                    <div class="county-item" onclick="selectCounty('Wajir')">Wajir</div>
-                    <div class="county-item" onclick="selectCounty('West Pokot')">West Pokot</div>
-                </div>
-
-                <div id="noCountiesMessage" class="no-counties-message hidden">
-                    <svg class="no-counties-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-                    <p>No counties found</p>
-                </div>
-            </div>
-        </div>
+    <div class="account-promo-header">
+      <div class="account-promo-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      </div>
+      <h2 class="account-promo-title">Unlock Premium Features</h2>
+      <p class="account-promo-subtitle">Create an account to get personalized insights and exclusive benefits</p>
     </div>
+
+    <div class="account-promo-content">
+      <ul class="account-promo-benefits">
+        <li class="benefit-item">
+          <svg class="benefit-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"></path>
+          </svg>
+          <span>Save your favorite crops and markets</span>
+        </li>
+        <li class="benefit-item">
+          <svg class="benefit-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"></path>
+          </svg>
+          <span>Get real-time price notifications</span>
+        </li>
+        <li class="benefit-item">
+          <svg class="benefit-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"></path>
+          </svg>
+          <span>Track price trends with charts</span>
+        </li>
+      </ul>
+
+      <div class="account-promo-actions">
+        <button class="btn-promo-primary" onclick="handleCreateAccount()">Create Account</button>
+        <button class="btn-promo-secondary" onclick="handleLogin()">Sign In</button>
+        <button class="btn-promo-tertiary" onclick="continueAsGuest()">Continue as Guest</button>
+      </div>
+    </div>
+  </div>
+</div>
 
     <!-- Navigation -->
     <header class="navbar">
@@ -819,5 +767,6 @@
 
     <script src="js/navigation.js"></script>
     <script src="js/modal.js"></script>
+    <script src="js/account-promo.js"></script>
 </body>
 </html>

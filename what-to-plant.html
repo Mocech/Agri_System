@@ -5,547 +5,685 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>What to Plant - FarmDecide Kenya</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="js/tailwind-config.js"></script>
+    <script src="tailwind-config.js"></script>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/what-to-plant.css">
 </head>
-<body class="bg-neutral-50 text-neutral-900">
-    <!-- Updated navigation to match homepage styling -->
+<body class="bg-neutral-50">
+    
     <!-- Navigation -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
+    <header class="navbar">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex items-center gap-3">
-                    <svg class="w-8 h-8 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="index.html" class="navbar-brand">
+                    <svg class="w-10 h-10 text-green-500" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 2L4 7v10c0 5.55 3.84 10.74 8 12 4.16-1.26 8-6.45 8-12V7l-8-5z"/>
                     </svg>
-                    <span class="text-xl font-bold text-gray-900">FarmDecide</span>
+                    <span>FarmDecide</span>
+                </a>
+                
+                <!-- Desktop Nav Links -->
+                <div class="hidden md:flex items-center gap-10">
+                    <a href="index.html" class="navbar-link">Home</a>
+                    <a href="where-to-sell.html" class="navbar-link">Where to Sell</a>
+                    <a href="what-to-plant.html" class="navbar-link active">What to Plant</a>
                 </div>
                 
-                <div class="hidden md:flex items-center gap-8">
-                    <a href="index.html" class="text-gray-600 hover:text-green-600 transition-colors">Home</a>
-                    <a href="where-to-sell.html" class="text-gray-600 hover:text-green-600 transition-colors">Where to Sell</a>
-                    <a href="what-to-plant.html" class="text-green-600 font-semibold border-b-2 border-green-600">What to Plant</a>
-                </div>
-                
+                <!-- Right Side -->
                 <div class="flex items-center gap-4">
-                    <select class="hidden sm:block text-sm border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500">
-                        <option>Kitui</option>
-                        <option>Nairobi</option>
-                        <option>Machakos</option>
-                    </select>
-                    <button class="hidden sm:inline-flex bg-green-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-green-600 transition-all">
+                    <!-- Get Started Button -->
+                    <a href="where-to-sell.html" class="hidden md:inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-900 font-semibold rounded-lg hover:from-yellow-500 hover:to-yellow-600 transition-all shadow-md hover:shadow-lg">
                         Get Started
-                    </button>
-                    <button class="md:hidden p-2" onclick="toggleMobileMenu()">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                    
+                    <!-- Mobile Menu Button -->
+                    <button class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" onclick="toggleMobileMenu()">
+                        <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                         </svg>
                     </button>
                 </div>
             </div>
             
-            <div id="mobileMenu" class="hidden md:hidden pb-4 space-y-3">
-                <a href="index.html" class="block text-gray-600 py-2">Home</a>
-                <a href="where-to-sell.html" class="block text-gray-600 py-2">Where to Sell</a>
-                <a href="what-to-plant.html" class="block text-green-600 font-semibold py-2">What to Plant</a>
-                <select class="w-full text-sm border border-gray-300 rounded-lg px-3 py-2">
-                    <option>Kitui</option>
-                    <option>Nairobi</option>
-                    <option>Machakos</option>
-                </select>
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden pb-4 border-t border-gray-100 mt-2 pt-4">
+                <div class="space-y-3">
+                    <a href="index.html" class="block text-gray-600 hover:text-green-600 hover:bg-gray-50 py-2 px-3 rounded-lg transition-all">Home</a>
+                    <a href="where-to-sell.html" class="block text-gray-600 hover:text-green-600 hover:bg-gray-50 py-2 px-3 rounded-lg transition-all">Where to Sell</a>
+                    <a href="what-to-plant.html" class="block text-green-600 font-semibold py-2 px-3 rounded-lg bg-green-50">What to Plant</a>
+                    <a href="where-to-sell.html" class="flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-900 font-semibold rounded-lg">
+                        Get Started
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
             </div>
         </nav>
     </header>
 
-    <!-- Dark hero section matching home page -->
-    <section class="hero-overlay plant-hero flex items-center relative">
+    <!-- Hero Section -->
+    <!-- Added hero overlay like homepage -->
+    <section class="plant-hero flex items-center relative">
+        <img src="/placeholder.svg?height=800&width=1600" alt="Kenyan farming landscape" class="hero-bg-image">
+        
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full relative z-10">
             <div class="max-w-3xl">
                 <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full mb-6 border border-white/20">
-                    <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2a10 10 0 0110 10v3.5a3.5 3.5 0 01-6.39 1.976A4.505 4.505 0 0112 18a4.5 4.5 0 01-3.61-1.524A3.5 3.5 0 012 15.5V12A10 10 0 0112 2zm0 2a8 8 0 00-8 8v3.5a1.5 1.5 0 003 0V12a5 5 0 0110 0v3.5a1.5 1.5 0 003 0V12a8 8 0 00-8-8z"/>
+                    <svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                     </svg>
-                    <span class="text-sm text-white font-medium">Crop Planning</span>
+                    <span class="text-white font-medium">Smart Crop Planning</span>
                 </div>
                 
-                <h1 class="text-4xl sm:text-5xl font-bold mb-6 text-white leading-tight">
-                    Plan Your Next Crop<br>for Maximum Profits
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-white leading-tight">
+                    Compare Crops & Make<br>Data-Driven Decisions
                 </h1>
                 
-                <p class="text-lg sm:text-xl mb-0 text-white/90 leading-relaxed max-w-2xl">
-                    See which crops will give you the best returns based on forecasted prices at harvest time.
+                <p class="text-base sm:text-lg mb-8 text-white/90 leading-relaxed max-w-2xl">
+                    Get personalized crop recommendations based on your county, planting time, and harvest expectations. Compare varieties and maximize your profits.
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Added scrolling marquee -->
-    <div class="marquee py-4">
-        <div class="marquee-content">
-            <span class="inline-flex items-center gap-3 text-white font-semibold text-lg mx-8">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-                Price Forecasts
-            </span>
-            <span class="inline-flex items-center gap-3 text-white font-semibold text-lg mx-8">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-                Crop Rankings
-            </span>
-            <span class="inline-flex items-center gap-3 text-white font-semibold text-lg mx-8">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-                Income Estimator
-            </span>
-            <span class="inline-flex items-center gap-3 text-white font-semibold text-lg mx-8">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-                Harvest Planning
-            </span>
-            <span class="inline-flex items-center gap-3 text-white font-semibold text-lg mx-8">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-                Price Forecasts
-            </span>
-            <span class="inline-flex items-center gap-3 text-white font-semibold text-lg mx-8">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-                Crop Rankings
-            </span>
-        </div>
-    </div>
-
-    <main class="py-12 bg-stone-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Page Header -->
-            <div class="mb-12">
-                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-balance text-neutral-900">What should I plant now in Kitui?</h1>
-                <p class="text-lg text-neutral-600 max-w-3xl">Crops below are ranked by expected selling price per 90 Kg bag at harvest in your county (price-only).</p>
-            </div>
-
-            <!-- Quick Plan Section -->
-            <div class="bg-white rounded-2xl shadow-sm p-6 sm:p-8 mb-8 border border-neutral-200">
-                <h2 class="text-2xl font-bold mb-6 text-neutral-900">Quick plan for common crops in Kitui</h2>
-                
-                <!-- Desktop Table -->
-                <div class="hidden lg:block overflow-x-auto">
-                    <table class="w-full">
-                        <thead class="bg-neutral-50">
-                            <tr>
-                                <th class="px-6 py-4 text-left text-sm font-semibold text-neutral-900 w-16">Rank</th>
-                                <th class="px-6 py-4 text-left text-sm font-semibold text-neutral-900">Crop</th>
-                                <th class="px-6 py-4 text-left text-sm font-semibold text-neutral-900">Harvest time</th>
-                                <th class="px-6 py-4 text-right text-sm font-semibold text-neutral-900">Expected price per bag</th>
-                                <th class="px-6 py-4 text-center text-sm font-semibold text-neutral-900">Trend</th>
-                                <th class="px-6 py-4 text-center text-sm font-semibold text-neutral-900">Confidence</th>
-                                <th class="px-6 py-4 text-left text-sm font-semibold text-neutral-900">Comment</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-neutral-200">
-                            <tr class="bg-primary/5 border-l-4 border-primary">
-                                <td class="px-6 py-4">
-                                    <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold text-sm">1</div>
-                                </td>
-                                <td class="px-6 py-4 text-neutral-900 font-semibold">Green Grams</td>
-                                <td class="px-6 py-4 text-neutral-600">Mar 2024 (3 months)</td>
-                                <td class="px-6 py-4 text-right text-neutral-900 font-bold text-lg">KES 10,500</td>
-                                <td class="px-6 py-4 text-center">
-                                    <span class="inline-block px-3 py-1 bg-green-100 text-green-800 text-xs font-semibold rounded-full">Rising</span>
-                                </td>
-                                <td class="px-6 py-4 text-center">
-                                    <span class="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">High</span>
-                                </td>
-                                <td class="px-6 py-4 text-neutral-700 text-sm">Strong price expected at harvest</td>
-                            </tr>
-                            <tr class="hover:bg-neutral-50 transition-colors">
-                                <td class="px-6 py-4">
-                                    <div class="w-8 h-8 bg-neutral-200 text-neutral-700 rounded-full flex items-center justify-center font-bold text-sm">2</div>
-                                </td>
-                                <td class="px-6 py-4 text-neutral-900 font-semibold">Beans (Red)</td>
-                                <td class="px-6 py-4 text-neutral-600">Mar 2024 (3 months)</td>
-                                <td class="px-6 py-4 text-right text-neutral-900 font-bold text-lg">KES 9,200</td>
-                                <td class="px-6 py-4 text-center">
-                                    <span class="inline-block px-3 py-1 bg-neutral-100 text-neutral-800 text-xs font-semibold rounded-full">Stable</span>
-                                </td>
-                                <td class="px-6 py-4 text-center">
-                                    <span class="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">High</span>
-                                </td>
-                                <td class="px-6 py-4 text-neutral-700 text-sm">Consistently good demand</td>
-                            </tr>
-                            <tr class="hover:bg-neutral-50 transition-colors">
-                                <td class="px-6 py-4">
-                                    <div class="w-8 h-8 bg-neutral-200 text-neutral-700 rounded-full flex items-center justify-center font-bold text-sm">3</div>
-                                </td>
-                                <td class="px-6 py-4 text-neutral-900 font-semibold">Cowpeas</td>
-                                <td class="px-6 py-4 text-neutral-600">Mar 2024 (3 months)</td>
-                                <td class="px-6 py-4 text-right text-neutral-900 font-bold text-lg">KES 7,800</td>
-                                <td class="px-6 py-4 text-center">
-                                    <span class="inline-block px-3 py-1 bg-green-100 text-green-800 text-xs font-semibold rounded-full">Rising</span>
-                                </td>
-                                <td class="px-6 py-4 text-center">
-                                    <span class="inline-block px-3 py-1 bg-amber-100 text-amber-800 text-xs font-semibold rounded-full">Medium</span>
-                                </td>
-                                <td class="px-6 py-4 text-neutral-700 text-sm">Growing market interest</td>
-                            </tr>
-                            <tr class="hover:bg-neutral-50 transition-colors">
-                                <td class="px-6 py-4">
-                                    <div class="w-8 h-8 bg-neutral-200 text-neutral-700 rounded-full flex items-center justify-center font-bold text-sm">4</div>
-                                </td>
-                                <td class="px-6 py-4 text-neutral-900 font-semibold">Maize (Hybrid)</td>
-                                <td class="px-6 py-4 text-neutral-600">May 2024 (5 months)</td>
-                                <td class="px-6 py-4 text-right text-neutral-900 font-bold text-lg">KES 4,600</td>
-                                <td class="px-6 py-4 text-center">
-                                    <span class="inline-block px-3 py-1 bg-neutral-100 text-neutral-800 text-xs font-semibold rounded-full">Stable</span>
-                                </td>
-                                <td class="px-6 py-4 text-center">
-                                    <span class="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">High</span>
-                                </td>
-                                <td class="px-6 py-4 text-neutral-700 text-sm">Reliable staple crop</td>
-                            </tr>
-                            <tr class="hover:bg-neutral-50 transition-colors">
-                                <td class="px-6 py-4">
-                                    <div class="w-8 h-8 bg-neutral-200 text-neutral-700 rounded-full flex items-center justify-center font-bold text-sm">5</div>
-                                </td>
-                                <td class="px-6 py-4 text-neutral-900 font-semibold">Sorghum</td>
-                                <td class="px-6 py-4 text-neutral-600">Apr 2024 (4 months)</td>
-                                <td class="px-6 py-4 text-right text-neutral-900 font-bold text-lg">KES 4,100</td>
-                                <td class="px-6 py-4 text-center">
-                                    <span class="inline-block px-3 py-1 bg-red-100 text-red-800 text-xs font-semibold rounded-full">Falling</span>
-                                </td>
-                                <td class="px-6 py-4 text-center">
-                                    <span class="inline-block px-3 py-1 bg-amber-100 text-amber-800 text-xs font-semibold rounded-full">Medium</span>
-                                </td>
-                                <td class="px-6 py-4 text-neutral-700 text-sm">Drought-resistant option</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                
-                <!-- Mobile Cards -->
-                <div class="lg:hidden space-y-4">
-                    <div class="border-2 border-primary bg-primary/5 rounded-xl p-5">
-                        <div class="flex items-start gap-3 mb-3">
-                            <div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">1</div>
-                            <div class="flex-1">
-                                <div class="font-semibold text-lg text-neutral-900">Green Grams</div>
-                                <div class="text-sm text-neutral-600">Harvest: Mar 2024 (3 months)</div>
-                            </div>
-                            <div class="text-right">
-                                <div class="text-xl font-bold text-neutral-900">KES 10,500</div>
-                            </div>
-                        </div>
-                        <div class="flex gap-2 flex-wrap mb-2">
-                            <span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-semibold rounded-full">Rising</span>
-                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">High Confidence</span>
-                        </div>
-                        <p class="text-sm text-neutral-700">Strong price expected at harvest</p>
-                    </div>
-                    
-                    <div class="border border-neutral-200 rounded-xl p-5">
-                        <div class="flex items-start gap-3 mb-3">
-                            <div class="w-10 h-10 bg-neutral-200 text-neutral-700 rounded-full flex items-center justify-center font-bold flex-shrink-0">2</div>
-                            <div class="flex-1">
-                                <div class="font-semibold text-lg text-neutral-900">Beans (Red)</div>
-                                <div class="text-sm text-neutral-600">Harvest: Mar 2024 (3 months)</div>
-                            </div>
-                            <div class="text-right">
-                                <div class="text-xl font-bold text-neutral-900">KES 9,200</div>
-                            </div>
-                        </div>
-                        <div class="flex gap-2 flex-wrap mb-2">
-                            <span class="px-3 py-1 bg-neutral-100 text-neutral-800 text-xs font-semibold rounded-full">Stable</span>
-                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">High Confidence</span>
-                        </div>
-                        <p class="text-sm text-neutral-700">Consistently good demand</p>
-                    </div>
-                    
-                    <div class="border border-neutral-200 rounded-xl p-5">
-                        <div class="flex items-start gap-3 mb-3">
-                            <div class="w-10 h-10 bg-neutral-200 text-neutral-700 rounded-full flex items-center justify-center font-bold flex-shrink-0">3</div>
-                            <div class="flex-1">
-                                <div class="font-semibold text-lg text-neutral-900">Cowpeas</div>
-                                <div class="text-sm text-neutral-600">Harvest: Mar 2024 (3 months)</div>
-                            </div>
-                            <div class="text-right">
-                                <div class="text-xl font-bold text-neutral-900">KES 7,800</div>
-                            </div>
-                        </div>
-                        <div class="flex gap-2 flex-wrap mb-2">
-                            <span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-semibold rounded-full">Rising</span>
-                            <span class="px-3 py-1 bg-amber-100 text-amber-800 text-xs font-semibold rounded-full">Medium Confidence</span>
-                        </div>
-                        <p class="text-sm text-neutral-700">Growing market interest</p>
-                    </div>
-                </div>
-                
-                <div class="mt-6 p-4 bg-amber-50 border border-amber-200 rounded-lg">
-                    <p class="text-sm text-amber-900">
-                        <strong>Note:</strong> Prices are estimates at harvest and do not include seed, fertilizer, labour, or transport costs.
+    <!-- Main Form Section -->
+    <section class="py-12 md:py-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-2xl shadow-xl p-6 md:p-10">
+                <div class="mb-8 text-center">
+                    <h2 class="text-2xl md:text-3xl font-bold text-neutral-900 mb-3">
+                        Plan Your Next Planting Season
+                    </h2>
+                    <p class="text-neutral-600">
+                        Answer a few questions to get customized crop recommendations for your farm
                     </p>
                 </div>
-            </div>
-
-            <!-- Customize Plan Card -->
-            <div class="bg-white rounded-2xl shadow-sm p-6 sm:p-8 mb-8 border border-neutral-200">
-                <h2 class="text-2xl font-bold mb-6 text-neutral-900">Customize your plan</h2>
                 
-                <form class="space-y-6">
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-sm font-semibold text-neutral-700 mb-2">County</label>
-                            <select class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
-                                <option>Kitui</option>
-                                <option>Machakos</option>
-                                <option>Makueni</option>
-                                <option>Nairobi</option>
-                            </select>
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-semibold text-neutral-700 mb-2">Planting time</label>
-                            <select class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
-                                <option>This month (default)</option>
-                                <option>Next month</option>
-                            </select>
-                        </div>
-                    </div>
-                    
+                <form id="cropComparisonForm" class="space-y-8">
+                    <!-- County Selection -->
                     <div>
-                        <label class="block text-sm font-semibold text-neutral-700 mb-3">Growing period</label>
-                        <select class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
-                            <option>Let the system use typical duration per crop</option>
-                            <option>Short (about 3 months)</option>
-                            <option>Medium (4–5 months)</option>
-                            <option>Long (6 months or more)</option>
+                        <label class="block text-sm font-semibold text-neutral-700 mb-2">
+                            <svg class="w-4 h-4 inline-block mr-1 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                            </svg>
+                            County
+                        </label>
+                        <div class="custom-select-wrapper">
+                            <button type="button" class="custom-select-trigger" onclick="toggleDropdown('countyDropdown')">
+                                <span id="countySelected" class="custom-select-value">Nairobi</span>
+                                <svg class="custom-select-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </button>
+                            <div id="countyDropdown" class="custom-select-dropdown hidden">
+                                <div class="custom-select-search">
+                                    <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                    </svg>
+                                    <input type="text" placeholder="Search county..." class="custom-select-search-input" oninput="filterOptions('countyDropdown', this.value)">
+                                </div>
+                                <div class="custom-select-options">
+                                    <div class="custom-select-option" onclick="selectOption('county', 'Baringo')">Baringo</div>
+                                    <div class="custom-select-option" onclick="selectOption('county', 'Bomet')">Bomet</div>
+                                    <div class="custom-select-option" onclick="selectOption('county', 'Bungoma')">Bungoma</div>
+                                    <div class="custom-select-option" onclick="selectOption('county', 'Busia')">Busia</div>
+                                    <div class="custom-select-option" onclick="selectOption('county', 'Kitui')">Kitui</div>
+                                    <div class="custom-select-option" onclick="selectOption('county', 'Machakos')">Machakos</div>
+                                    <div class="custom-select-option selected" onclick="selectOption('county', 'Nairobi')">Nairobi</div>
+                                    <div class="custom-select-option" onclick="selectOption('county', 'Nakuru')">Nakuru</div>
+                                    <div class="custom-select-option" onclick="selectOption('county', 'Nyeri')">Nyeri</div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-xs text-neutral-500 mt-2">Showing example for Nairobi (you can change this)</p>
+                    </div>
+
+                    <!-- When to Plant -->
+                    <div>
+                        <label class="block text-sm font-semibold text-neutral-700 mb-3">
+                            When do you plan to plant?
+                        </label>
+                        <select class="w-full px-4 py-3 border-2 border-neutral-200 rounded-lg focus:border-green-500 focus:ring-2 focus:ring-green-100 transition-all">
+                            <option selected>Now / this month</option>
+                            <option>Next month</option>
                         </select>
                     </div>
-                    
+
+                    <!-- Expected Time to Harvest -->
                     <div>
-                        <label class="block text-sm font-semibold text-neutral-700 mb-3">Crops to compare</label>
-                        <div class="space-y-3">
-                            <label class="flex items-center gap-2 cursor-pointer">
-                                <input type="radio" name="cropSelection" value="common" checked class="w-4 h-4 text-primary focus:ring-primary">
-                                <span class="text-sm">Common crops in this county (default)</span>
+                        <label class="block text-sm font-semibold text-neutral-700 mb-3">
+                            In about how many months do you expect to harvest what you plant?
+                        </label>
+                        <select id="harvestTime" class="w-full px-4 py-3 border-2 border-neutral-200 rounded-lg focus:border-green-500 focus:ring-2 focus:ring-green-100 transition-all">
+                            <option value="1">About 1 month</option>
+                            <option value="2">About 2 months</option>
+                            <option value="3" selected>About 3 months</option>
+                            <option value="4">About 4 months</option>
+                            <option value="5">About 5 months or more</option>
+                        </select>
+                    </div>
+
+                    <!-- Two Crops to Compare -->
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <!-- Crop 1 -->
+                        <div>
+                            <label class="block text-sm font-semibold text-neutral-700 mb-2">
+                                <svg class="w-4 h-4 inline-block mr-1 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                                Crop 1
                             </label>
-                            <label class="flex items-center gap-2 cursor-pointer">
-                                <input type="radio" name="cropSelection" value="custom" class="w-4 h-4 text-primary focus:ring-primary" onclick="toggleCropSelector()">
-                                <span class="text-sm">Let me choose crops</span>
-                            </label>
+                            <div class="custom-select-wrapper">
+                                <button type="button" class="custom-select-trigger has-value" onclick="toggleDropdown('crop1Dropdown')">
+                                    <span id="crop1Selected" class="custom-select-value">Maize</span>
+                                    <svg class="custom-select-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                    </svg>
+                                </button>
+                                <div id="crop1Dropdown" class="custom-select-dropdown hidden">
+                                    <div class="custom-select-search">
+                                        <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                        </svg>
+                                        <input type="text" placeholder="Search crop..." class="custom-select-search-input" oninput="filterOptions('crop1Dropdown', this.value)">
+                                    </div>
+                                    <div class="custom-select-options">
+                                        <div class="custom-select-option selected" onclick="selectOption('crop1', 'Maize')">Maize</div>
+                                        <div class="custom-select-option" onclick="selectOption('crop1', 'Beans')">Beans</div>
+                                        <div class="custom-select-option" onclick="selectOption('crop1', 'Green Grams')">Green Grams</div>
+                                        <div class="custom-select-option" onclick="selectOption('crop1', 'Cowpeas')">Cowpeas</div>
+                                        <div class="custom-select-option" onclick="selectOption('crop1', 'Sorghum')">Sorghum</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        
-                        <!-- Custom Crop Selector (hidden by default) -->
-                        <div id="customCropSelector" class="hidden mt-4 p-4 bg-neutral-50 rounded-lg border border-neutral-200">
-                            <label class="block text-sm font-medium text-neutral-700 mb-2">Select crops to compare</label>
-                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 text-primary rounded focus:ring-primary">
-                                    <span class="text-sm">Maize</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 text-primary rounded focus:ring-primary">
-                                    <span class="text-sm">Beans</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 text-primary rounded focus:ring-primary">
-                                    <span class="text-sm">Green Grams</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 text-primary rounded focus:ring-primary">
-                                    <span class="text-sm">Cowpeas</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 text-primary rounded focus:ring-primary">
-                                    <span class="text-sm">Sorghum</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 text-primary rounded focus:ring-primary">
-                                    <span class="text-sm">Millet</span>
-                                </label>
+
+                        <!-- Crop 2 -->
+                        <div>
+                            <label class="block text-sm font-semibold text-neutral-700 mb-2">
+                                <svg class="w-4 h-4 inline-block mr-1 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                                Crop 2
+                            </label>
+                            <div class="custom-select-wrapper">
+                                <button type="button" class="custom-select-trigger has-value" onclick="toggleDropdown('crop2Dropdown')">
+                                    <span id="crop2Selected" class="custom-select-value">Beans</span>
+                                    <svg class="custom-select-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                    </svg>
+                                </button>
+                                <div id="crop2Dropdown" class="custom-select-dropdown hidden">
+                                    <div class="custom-select-search">
+                                        <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                        </svg>
+                                        <input type="text" placeholder="Search crop..." class="custom-select-search-input" oninput="filterOptions('crop2Dropdown', this.value)">
+                                    </div>
+                                    <div class="custom-select-options">
+                                        <div class="custom-select-option" onclick="selectOption('crop2', 'Maize')">Maize</div>
+                                        <div class="custom-select-option selected" onclick="selectOption('crop2', 'Beans')">Beans</div>
+                                        <div class="custom-select-option" onclick="selectOption('crop2', 'Green Grams')">Green Grams</div>
+                                        <div class="custom-select-option" onclick="selectOption('crop2', 'Cowpeas')">Cowpeas</div>
+                                        <div class="custom-select-option" onclick="selectOption('crop2', 'Sorghum')">Sorghum</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    
-                    <button type="button" class="w-full sm:w-auto bg-primary text-white font-semibold px-8 py-3 rounded-lg hover:bg-primary-dark transition-all shadow-sm hover:shadow-md min-h-[48px]">
-                        Get customized plan
-                    </button>
+
+                    <!-- Varieties Selection -->
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <!-- Varieties for Crop 1 -->
+                        <div>
+                            <label class="block text-sm font-semibold text-neutral-700 mb-2">
+                                Varieties for <span id="crop1Label">Maize</span>
+                            </label>
+                            <div class="custom-select-wrapper">
+                                <button type="button" class="custom-select-trigger has-value" onclick="toggleDropdown('varieties1Dropdown')">
+                                    <span id="varieties1Selected" class="custom-select-value">All common varieties</span>
+                                    <svg class="custom-select-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                    </svg>
+                                </button>
+                                <div id="varieties1Dropdown" class="custom-select-dropdown hidden">
+                                    <div class="custom-select-search">
+                                        <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                        </svg>
+                                        <input type="text" placeholder="Search variety..." class="custom-select-search-input" oninput="filterOptions('varieties1Dropdown', this.value)">
+                                    </div>
+                                    <div class="custom-select-options">
+                                        <div class="custom-select-option selected" onclick="selectOption('varieties1', 'All common varieties')">All common varieties</div>
+                                        <div class="custom-select-option" onclick="selectOption('varieties1', 'Dry Maize - White')">Dry Maize - White</div>
+                                        <div class="custom-select-option" onclick="selectOption('varieties1', 'Dry Maize - Yellow')">Dry Maize - Yellow</div>
+                                        <div class="custom-select-option" onclick="selectOption('varieties1', 'Hybrid Maize')">Hybrid Maize</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Varieties for Crop 2 -->
+                        <div>
+                            <label class="block text-sm font-semibold text-neutral-700 mb-2">
+                                Varieties for <span id="crop2Label">Beans</span>
+                            </label>
+                            <div class="custom-select-wrapper">
+                                <button type="button" class="custom-select-trigger has-value" onclick="toggleDropdown('varieties2Dropdown')">
+                                    <span id="varieties2Selected" class="custom-select-value">All common varieties</span>
+                                    <svg class="custom-select-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                    </svg>
+                                </button>
+                                <div id="varieties2Dropdown" class="custom-select-dropdown hidden">
+                                    <div class="custom-select-search">
+                                        <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                        </svg>
+                                        <input type="text" placeholder="Search variety..." class="custom-select-search-input" oninput="filterOptions('varieties2Dropdown', this.value)">
+                                    </div>
+                                    <div class="custom-select-options">
+                                        <div class="custom-select-option selected" onclick="selectOption('varieties2', 'All common varieties')">All common varieties</div>
+                                        <div class="custom-select-option" onclick="selectOption('varieties2', 'Rosecoco')">Rosecoco</div>
+                                        <div class="custom-select-option" onclick="selectOption('varieties2', 'Canadian Wonder')">Canadian Wonder</div>
+                                        <div class="custom-select-option" onclick="selectOption('varieties2', 'Yellow Beans')">Yellow Beans</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="text-center pt-4">
+                        <!-- Updated button to toggle results instead of opening popup -->
+                        <button type="button" onclick="compareCrops()" class="px-8 py-4 bg-gradient-to-r from-green-500 to-green-600 text-white font-bold rounded-xl hover:from-green-600 hover:to-green-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                            Compare & Get Recommendation
+                        </button>
+                    </div>
                 </form>
             </div>
+        </div>
+    </section>
 
-            <!-- Income Estimator -->
-            <div class="bg-white rounded-2xl shadow-sm p-6 sm:p-8 mb-8 border border-neutral-200">
-                <h2 class="text-2xl font-bold mb-4 text-neutral-900">Estimate potential income</h2>
-                <p class="text-neutral-600 mb-6">Enter how many bags you expect to harvest to see potential income (price only, no costs).</p>
-                
-                <div class="space-y-6">
-                    <div>
-                        <label class="block text-sm font-semibold text-neutral-700 mb-2">Crop</label>
-                        <select class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
-                            <option>Green Grams</option>
-                            <option>Beans (Red)</option>
-                            <option>Cowpeas</option>
-                            <option>Maize (Hybrid)</option>
-                            <option>Sorghum</option>
-                        </select>
-                    </div>
-                    
-                    <div>
-                        <label class="block text-sm font-semibold text-neutral-700 mb-2">Expected harvest (90 Kg bags)</label>
-                        <input type="number" value="30" class="w-full sm:w-64 px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
-                    </div>
-                    
-                    <button type="button" class="w-full sm:w-auto bg-yellow-500 text-gray-900 font-semibold px-8 py-3 rounded-lg hover:bg-yellow-600 transition-all shadow-sm hover:shadow-md min-h-[48px]">
-                        Calculate potential income
-                    </button>
-                </div>
-                
-                <!-- Result Summary -->
-                <div class="mt-8 income-estimator">
-                    <h3 class="font-bold text-lg mb-4 text-neutral-900">Income estimate</h3>
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-center">
-                            <span class="text-neutral-700">Crop:</span>
-                            <span class="font-semibold text-neutral-900">Green Grams</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-neutral-700">Expected price per bag:</span>
-                            <span class="font-semibold text-neutral-900">KES 10,500</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-neutral-700">Number of bags:</span>
-                            <span class="font-semibold text-neutral-900">30</span>
-                        </div>
-                        <div class="pt-3 border-t border-yellow-300 mt-3">
-                            <div class="flex justify-between items-center">
-                                <span class="text-lg font-semibold text-neutral-900">Total potential income:</span>
-                                <span class="text-2xl font-bold text-yellow-700">KES 315,000</span>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-xs text-yellow-900 mt-4">
-                        * This is gross income. Deduct seed, fertilizer, labour, transport, and other costs for net profit.
-                    </p>
-                </div>
+    <!-- Results section now appears on same page with collapse/expand functionality -->
+    <!-- Results Section -->
+    <section id="resultsSection" class="hidden py-12 md:py-16 bg-gradient-to-b from-gray-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Results Header with Collapse Button -->
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-neutral-900">
+                    Your Crop Comparison Results
+                </h2>
+                <button onclick="toggleResults()" class="flex items-center gap-2 px-4 py-2 bg-white border-2 border-gray-200 rounded-lg hover:border-green-500 hover:bg-green-50 transition-all">
+                    <span class="font-semibold text-neutral-700" id="collapseButtonText">Hide Results</span>
+                    <svg id="collapseArrow" class="w-5 h-5 text-green-600 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
+                    </svg>
+                </button>
             </div>
 
-            <!-- Specific Crop Checker -->
-            <div class="bg-white rounded-2xl shadow-sm p-6 sm:p-8 border border-neutral-200">
-                <h2 class="text-2xl font-bold mb-4 text-neutral-900">Check a specific crop</h2>
-                <p class="text-neutral-600 mb-6">Want to see the forecast for just one crop? Enter it here.</p>
-                
-                <div class="space-y-6">
-                    <div>
-                        <label class="block text-sm font-semibold text-neutral-700 mb-2">Crop</label>
-                        <select class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
-                            <option>Maize</option>
-                            <option>Beans</option>
-                            <option>Green Grams</option>
-                            <option>Cowpeas</option>
-                            <option>Sorghum</option>
-                        </select>
+            <!-- Collapsible Results Content -->
+            <div id="resultsContent" class="space-y-8">
+                <!-- Advice Message -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 border-l-4 border-green-500">
+                    <div class="flex items-start gap-4">
+                        <div class="flex-shrink-0">
+                            <svg class="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-neutral-900 mb-2">Our Recommendation</h3>
+                            <div id="adviceMessage" class="text-neutral-700 leading-relaxed"></div>
+                        </div>
                     </div>
-                    
-                    <button type="button" class="w-full sm:w-auto bg-primary text-white font-semibold px-8 py-3 rounded-lg hover:bg-primary-dark transition-all shadow-sm hover:shadow-md min-h-[48px]">
-                        Check this crop
-                    </button>
                 </div>
-                
-                <!-- Crop Detail Result -->
-                <div class="mt-8 bg-neutral-50 rounded-xl p-6 border border-neutral-200">
-                    <h3 class="font-bold text-lg mb-4 text-neutral-900">Maize (Hybrid) forecast for Kitui</h3>
-                    
-                    <div class="space-y-4">
-                        <div class="grid sm:grid-cols-2 gap-4">
-                            <div>
-                                <div class="text-sm text-neutral-600 mb-1">Expected harvest time</div>
-                                <div class="font-semibold text-neutral-900">May 2024 (5 months)</div>
+
+                <!-- Info Cards Section -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- Card 1: Best crops now -->
+                    <div class="info-card info-card-primary">
+                        <div class="flex items-start gap-3">
+                            <div class="info-card-icon">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
                             </div>
-                            <div>
-                                <div class="text-sm text-neutral-600 mb-1">Expected price per bag</div>
-                                <div class="text-2xl font-bold text-primary">KES 4,600</div>
-                            </div>
-                        </div>
-                        
-                        <div class="grid sm:grid-cols-2 gap-4">
-                            <div>
-                                <div class="text-sm text-neutral-600 mb-2">Trend</div>
-                                <span class="inline-block px-3 py-1 bg-neutral-100 text-neutral-800 text-xs font-semibold rounded-full">Stable</span>
-                            </div>
-                            <div>
-                                <div class="text-sm text-neutral-600 mb-2">Confidence</div>
-                                <span class="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">High</span>
-                            </div>
-                        </div>
-                        
-                        <div class="pt-4 border-t border-neutral-200">
-                            <div class="text-sm font-semibold text-neutral-700 mb-2">Market prices at harvest</div>
-                            <div class="space-y-2">
-                                <div class="flex justify-between items-center text-sm">
-                                    <span class="text-neutral-600">Kitui Town:</span>
-                                    <span class="font-semibold text-neutral-900">KES 4,600</span>
-                                </div>
-                                <div class="flex justify-between items-center text-sm">
-                                    <span class="text-neutral-600">Mwingi:</span>
-                                    <span class="font-semibold text-neutral-900">KES 4,500</span>
-                                </div>
-                                <div class="flex justify-between items-center text-sm">
-                                    <span class="text-neutral-600">Mutomo:</span>
-                                    <span class="font-semibold text-neutral-900">KES 4,400</span>
-                                </div>
+                            <div class="flex-1">
+                                <h4 class="info-card-title">Best crops now</h4>
+                                <p id="infoBestCrops" class="info-card-text"></p>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Card 2: Harvest time -->
+                    <div class="info-card">
+                        <div class="flex items-start gap-3">
+                            <div class="info-card-icon">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="info-card-title">Harvest time</h4>
+                                <p id="infoHarvestTime" class="info-card-text"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Expected price -->
+                    <div class="info-card">
+                        <div class="flex items-start gap-3">
+                            <div class="info-card-icon">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="info-card-title">Expected price</h4>
+                                <p id="infoExpectedPrice" class="info-card-text"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Price risk -->
+                    <div class="info-card">
+                        <div class="flex items-start gap-3">
+                            <div class="info-card-icon">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="info-card-title">Price risk</h4>
+                                <p id="infoPriceRisk" class="info-card-text"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comparison Table (only shown when specific varieties are selected) -->
+                <div id="comparisonTable" class="hidden bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                    <h3 class="text-2xl font-bold text-neutral-900 mb-2">Your Selected Varieties Comparison</h3>
+                    <p class="text-sm text-neutral-600 mb-6">Compare your chosen crop varieties side by side. Select one variety per crop at a time to view updated pricing and trends.</p>
+                    
+                    <!-- Added filter zone cue for mobile users -->
+                    <!-- Wrapping variety filters in sticky container for mobile -->
+                    <!-- Variety Filters -->
+                    <div class="variety-filters-container">
+                        <!-- Filter zone cue - shown on mobile when sticky -->
+                        <div id="filterZoneCue" class="filter-zone-cue hidden">
+                            <span class="text-xs font-medium text-green-700">Adjust varieties</span>
+                        </div>
+                        
+                        <!-- Compact summary shown only when sticky on mobile -->
+                        <div id="filterCompactSummary" class="filter-compact-summary hidden">
+                            <span id="compactSummaryText" class="text-sm font-medium text-neutral-700"></span>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pb-6 border-b-2 border-gray-100" id="filterFullView">
+                            <!-- Crop 1 Filter -->
+                            <div>
+                                <label class="block text-sm font-semibold text-neutral-700 mb-2" id="crop1FilterLabel">
+                                    <span class="inline-flex items-center gap-2">
+                                        <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h9m5-4v12m0 0l-4-4m4 4l4-4"/>
+                                        </svg>
+                                        Filter Crop 1 Variety
+                                    </span>
+                                </label>
+                                <!-- Replaced standard select with custom dropdown for green styling -->
+                                <div class="custom-select-wrapper-filter">
+                                    <button type="button" class="custom-filter-trigger" onclick="toggleFilterDropdown('crop1FilterDropdown')">
+                                        <span id="crop1FilterSelected" class="custom-filter-value">Select variety...</span>
+                                        <svg class="custom-select-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                        </svg>
+                                    </button>
+                                    <div id="crop1FilterDropdown" class="custom-filter-dropdown hidden">
+                                        <div class="custom-filter-options">
+                                            <!-- Populated by JavaScript -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-neutral-500 mt-1.5 italic filter-helper-text">Select one variety at a time to update the comparison</p>
+                            </div>
+                            
+                            <!-- Crop 2 Filter -->
+                            <div>
+                                <label class="block text-sm font-semibold text-neutral-700 mb-2" id="crop2FilterLabel">
+                                    <span class="inline-flex items-center gap-2">
+                                        <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h9m5-4v12m0 0l-4-4m4 4l4-4"/>
+                                        </svg>
+                                        Filter Crop 2 Variety
+                                    </span>
+                                </label>
+                                <!-- Replaced standard select with custom dropdown for green styling -->
+                                <div class="custom-select-wrapper-filter">
+                                    <button type="button" class="custom-filter-trigger" onclick="toggleFilterDropdown('crop2FilterDropdown')">
+                                        <span id="crop2FilterSelected" class="custom-filter-value">Select variety...</span>
+                                        <svg class="custom-select-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                        </svg>
+                                    </button>
+                                    <div id="crop2FilterDropdown" class="custom-filter-dropdown hidden">
+                                        <div class="custom-filter-options">
+                                            <!-- Populated by JavaScript -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-neutral-500 mt-1.5 italic filter-helper-text">Select one variety at a time to update the comparison</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End sticky filters wrapper -->
+                    
+                    <!-- Added floating pill button to return to filters -->
+                    <!-- Floating "Change varieties" pill - shown when scrolled past filters -->
+                    <button id="backToFiltersButton" class="back-to-filters-button hidden" onclick="scrollToFilters()">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+                        </svg>
+                        Change varieties
+                    </button>
+                    
+                    <!-- Desktop Table View -->
+                    <div class="hidden md:block overflow-x-auto">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="border-b-2 border-gray-200">
+                                    <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Crop & Variety</th>
+                                    <th class="px-6 py-3 text-right text-xs font-bold text-gray-600 uppercase tracking-wider">Price/Bag</th>
+                                    <th class="px-6 py-3 text-center text-xs font-bold text-gray-600 uppercase tracking-wider">Trend</th>
+                                    <th class="px-6 py-3 text-center text-xs font-bold text-gray-600 uppercase tracking-wider">Confidence</th>
+                                </tr>
+                            </thead>
+                            <tbody id="comparisonTableBody" class="divide-y divide-gray-100">
+                                <!-- Populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Mobile Card View -->
+                    <div id="comparisonCards" class="md:hidden space-y-3">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Crop 1 Results Table -->
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden mb-8">
+                    <div class="px-4 md:px-6 py-6 border-b border-neutral-200">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                            <div>
+                                <h2 id="crop1TableTitle" class="text-2xl md:text-3xl font-bold text-neutral-900"></h2>
+                                <p id="crop1TableSubtitle" class="text-neutral-600 text-sm mt-2"></p>
+                            </div>
+                            <!-- Focus Control for Filtering Varieties -->
+                            <div id="crop1FocusControl" class="hidden">
+                                <label class="text-sm font-semibold text-neutral-700 mb-2 block">Focus:</label>
+                                <select id="crop1FocusSelect" class="px-4 py-2 border-2 border-neutral-300 rounded-lg bg-white text-neutral-900 font-medium focus:border-green-500 focus:outline-none">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Desktop Table View -->
+                    <div class="hidden md:block overflow-x-auto">
+                        <table class="min-w-full divide-y divide-neutral-200" id="crop1Table">
+                            <thead class="bg-neutral-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-4 text-left text-xs font-bold text-neutral-700 uppercase tracking-wider">
+                                        Variety
+                                    </th>
+                                    <th scope="col" class="px-6 py-4 text-right text-xs font-bold text-neutral-700 uppercase tracking-wider">
+                                        Expected Price/Bag
+                                    </th>
+                                    <th scope="col" class="px-6 py-4 text-center text-xs font-bold text-neutral-700 uppercase tracking-wider">
+                                        Trend
+                                    </th>
+                                    <th scope="col" class="px-6 py-4 text-center text-xs font-bold text-neutral-700 uppercase tracking-wider">
+                                        Confidence
+                                    </th>
+                                    <th scope="col" class="px-6 py-4 text-left text-xs font-bold text-neutral-700 uppercase tracking-wider">
+                                        What This Means
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="crop1TableBody" class="bg-white divide-y divide-neutral-200">
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Mobile Card View -->
+                    <div class="md:hidden px-4 py-4 space-y-3" id="crop1Cards">
+                    </div>
+
+                    <!-- Load More Button -->
+                    <div class="px-4 md:px-6 py-6 bg-neutral-50 border-t border-neutral-200 text-center">
+                        <button onclick="loadMoreCrop1Markets()" class="inline-flex items-center px-6 py-3 border-2 border-neutral-300 text-base font-semibold rounded-lg text-neutral-700 bg-white hover:bg-neutral-100 hover:border-neutral-400 transition-all duration-200">
+                            Load More Varieties
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Crop 2 Results Table -->
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden mb-8">
+                    <div class="px-4 md:px-6 py-6 border-b border-neutral-200">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                            <div>
+                                <h2 id="crop2TableTitle" class="text-2xl md:text-3xl font-bold text-neutral-900"></h2>
+                                <p id="crop2TableSubtitle" class="text-neutral-600 text-sm mt-2"></p>
+                            </div>
+                            <!-- Focus Control for Filtering Varieties -->
+                            <div id="crop2FocusControl" class="hidden">
+                                <label class="text-sm font-semibold text-neutral-700 mb-2 block">Focus:</label>
+                                <select id="crop2FocusSelect" class="px-4 py-2 border-2 border-neutral-300 rounded-lg bg-white text-neutral-900 font-medium focus:border-green-500 focus:outline-none">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Desktop Table View -->
+                    <div class="hidden md:block overflow-x-auto">
+                        <table class="min-w-full divide-y divide-neutral-200" id="crop2Table">
+                            <thead class="bg-neutral-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-4 text-left text-xs font-bold text-neutral-700 uppercase tracking-wider">
+                                        Variety
+                                    </th>
+                                    <th scope="col" class="px-6 py-4 text-right text-xs font-bold text-neutral-700 uppercase tracking-wider">
+                                        Expected Price/Bag
+                                    </th>
+                                    <th scope="col" class="px-6 py-4 text-center text-xs font-bold text-neutral-700 uppercase tracking-wider">
+                                        Trend
+                                    </th>
+                                    <th scope="col" class="px-6 py-4 text-center text-xs font-bold text-neutral-700 uppercase tracking-wider">
+                                        Confidence
+                                    </th>
+                                    <th scope="col" class="px-6 py-4 text-left text-xs font-bold text-neutral-700 uppercase tracking-wider">
+                                        What This Means
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="crop2TableBody" class="bg-white divide-y divide-neutral-200">
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Mobile Card View -->
+                    <div class="md:hidden px-4 py-4 space-y-3" id="crop2Cards">
+                    </div>
+
+                    <!-- Load More Button -->
+                    <div class="px-4 md:px-6 py-6 bg-neutral-50 border-t border-neutral-200 text-center">
+                        <button onclick="loadMoreCrop2Markets()" class="inline-flex items-center px-6 py-3 border-2 border-neutral-300 text-base font-semibold rounded-lg text-neutral-700 bg-white hover:bg-neutral-100 hover:border-neutral-400 transition-all duration-200">
+                            Load More Varieties
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Optional Income Preview -->
+                <div class="bg-white rounded-2xl shadow-xl p-4 md:p-6 lg:p-8">
+                    <h3 class="text-base md:text-lg font-bold text-neutral-900 mb-4">Income Preview (Optional)</h3>
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
+                        <label class="text-sm font-semibold text-neutral-700">
+                            Expected bags at harvest?
+                        </label>
+                        <input type="number" id="bagsInput" min="1" value="20" onchange="updateIncomePreview()" class="w-full sm:w-32 px-4 py-2 border-2 border-neutral-200 rounded-lg focus:border-green-500 focus:ring-2 focus:ring-green-100">
+                    </div>
+                    
+                    <!-- Income Preview Table -->
+                    <div class="overflow-x-auto">
+                        <div class="inline-block min-w-full align-middle">
+                            <table class="min-w-full divide-y divide-neutral-200">
+                                <thead class="bg-neutral-50">
+                                    <tr>
+                                        <th scope="col" class="px-4 md:px-6 py-4 text-left text-xs font-bold text-neutral-700 uppercase tracking-wider">Variety</th>
+                                        <th scope="col" class="px-4 md:px-6 py-4 text-right text-xs font-bold text-neutral-700 uppercase tracking-wider">Price/Bag</th>
+                                        <th scope="col" class="px-4 md:px-6 py-4 text-center text-xs font-bold text-neutral-700 uppercase tracking-wider">Bags</th>
+                                        <th scope="col" class="px-4 md:px-6 py-4 text-right text-xs font-bold text-neutral-700 uppercase tracking-wider">Est. Income</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="incomePreviewBody" class="bg-white divide-y divide-neutral-200">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <p class="text-xs text-neutral-500 mt-4 italic bg-yellow-50 border-l-4 border-yellow-400 p-3 rounded">
+                        ⚠️ This is a rough estimate based on price only. It does not subtract seed, fertilizer, labour, or transport costs.
+                    </p>
                 </div>
             </div>
         </div>
-    </main>
+    </section>
 
-    <!-- Matching footer from home page -->
-    <footer class="bg-slate-900 text-gray-300 py-16">
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-4 gap-10 mb-12">
-                <div class="md:col-span-2">
-                    <div class="flex items-center gap-3 mb-4">
-                        <svg class="w-8 h-8 text-green-500" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2L4 7v10c0 5.55 3.84 10.74 8 12 4.16-1.26 8-6.45 8-12V7l-8-5z"/>
-                        </svg>
-                        <span class="text-xl font-bold text-white">FarmDecide Kenya</span>
-                    </div>
-                    <p class="text-gray-400 leading-relaxed">
-                        Empowering Kenyan farmers with data-driven market insights and crop planning tools for better farming decisions and improved livelihoods.
-                    </p>
+            <div class="text-center">
+                <div class="flex justify-center items-center gap-2 mb-4">
+                    <svg class="w-8 h-8 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2L4 7v10c0 5.55 3.84 10.74 8 12 4.16-1.26 8-6.45 8-12V7l-8-5z"/>
+                    </svg>
+                    <span class="text-xl font-bold">FarmDecide Kenya</span>
                 </div>
-                
-                <div>
-                    <h3 class="font-bold text-white mb-4">Quick Links</h3>
-                    <ul class="space-y-3">
-                        <li><a href="index.html" class="hover:text-green-500 transition-colors">Home</a></li>
-                        <li><a href="where-to-sell.html" class="hover:text-green-500 transition-colors">Where to Sell</a></li>
-                        <li><a href="what-to-plant.html" class="hover:text-green-500 transition-colors">What to Plant</a></li>
-                    </ul>
+                <p class="text-gray-400 mb-6">Making data-driven farming decisions accessible to all Kenyan farmers</p>
+                <div class="border-t border-gray-800 pt-6">
+                    <p class="text-gray-500 text-sm">© 2026 FarmDecide Kenya. All rights reserved.</p>
                 </div>
-                
-                <div>
-                    <h3 class="font-bold text-white mb-4">Data Source</h3>
-                    <p class="text-gray-400 leading-relaxed text-sm">
-                        All market prices and forecasts are sourced from the Kenya Agricultural Market Information System (KAMIS).
-                    </p>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-400">
-                <p>&copy; 2025 FarmDecide Kenya. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <script src="js/navigation.js"></script>
     <script src="js/what-to-plant.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
